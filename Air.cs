@@ -6,6 +6,6 @@ namespace OOPLab1
 {
     abstract class Air : Transport
     {
-
+        public Air(string name) : base(name) {}
     }
 }
