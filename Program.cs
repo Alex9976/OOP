@@ -6,7 +6,7 @@ namespace OOPLab1
     {
         static void Main(string[] args)
         {
-            
+
         }
     }
 }

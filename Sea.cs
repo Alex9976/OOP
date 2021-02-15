@@ -4,7 +4,8 @@ using System.Text;
 
 namespace OOPLab1
 {
-    abstract class Sea : Transport
+    class Sea : Transport
     {
+        public Sea(string Manufacturer) : base(Manufacturer) { }
     }
 }

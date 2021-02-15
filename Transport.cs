@@ -6,16 +6,15 @@ namespace OOPLab1
 {
     abstract class Transport
     {
-        public string Name { get; set; }
+        public string Manufacturer { get; set; }
 
-        public string Color { get; set; }
-
-        public float Cost { get; set; }
-
-        public Transport(string name)
+        public Transport(string Manufacturer)
         {
-            this.Name = name;
+            this.Manufacturer = Manufacturer;
         }
+
+        public abstract void PrintInfo();
+        public abstract void AskInfo();
 
     }
 }

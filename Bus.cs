@@ -6,5 +6,40 @@ namespace OOPLab1
 {
     class Bus : Land
     {
+
+        private bool isHaveInfoPanel;
+
+        public Bus(string Manufacturer) : base(Manufacturer) { }
+
+        private void SetupInfoPanel()
+        {
+            Console.WriteLine("Setup autopilot? (y/n)");
+            if (Console.ReadLine() == "y")
+                InstallInfoPanel();
+            else
+                UninstallInfoPanel();
+        }
+
+        private void InstallInfoPanel()
+        {
+            isHaveInfoPanel = true;
+        }
+
+        private void UninstallInfoPanel()
+        {
+            isHaveInfoPanel = false;
+        }
+
+        public override void PrintInfo()
+        {
+            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type " +
+                              ((isHaveInfoPanel) ? "with info panel.\n" : ".\n"));
+        }
+
+        public override void AskInfo()
+        {
+            base.AskInfo();
+            SetupInfoPanel();
+        }
     }
 }
