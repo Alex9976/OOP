@@ -8,37 +8,38 @@ namespace OOPLab1
     {
         public Helicopter(string Manufacturer) : base(Manufacturer) { }
 
-        public TEngine Engine { get; set; }
+        private bool isHaveParachute;
 
-        private void ChooseEngine()
+        private void Parachute()
         {
-            Console.WriteLine("1. Jet, 2. Turboprop");
-            switch (Convert.ToInt32(Console.ReadLine()))
-            {
-                case 1:
-                    Engine = TEngine.jet;
-                    break;
-                case 2:
-                    Engine = TEngine.turboprop;
-                    if (MaxAltitude > 10000)
-                        MaxAltitude = 10000;
-                    break;
-                default:
-                    Console.WriteLine("Choosed default value");
-                    Engine = TEngine.jet;
-                    break;
-            }
+            Console.WriteLine("Is have parachute? (y/n)");
+            if (Console.ReadLine() == "y")
+                HaveParachute();
+            else
+                HaveNotParachute();
+        }
+
+        private void HaveParachute()
+        {
+            isHaveParachute = true;
+        }
+
+        private void HaveNotParachute()
+        {
+            isHaveParachute = false;
         }
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"You choose a air transport '{Manufacturer}' wih {Engine} engine, with maximum altitude {MaxAltitude} meters \n");
+            Console.WriteLine($"You choose a helicopter '{Manufacturer}' with maximum altitude {MaxAltitude} meters" +
+                              ((isHaveParachute) ? " with parachute.\n" : ".\n"));
         }
 
         public override void AskInfo()
         {
+            Console.WriteLine("Helicopter\n");
             base.AskInfo();
-            ChooseEngine();
+            Parachute();
         }
 
     }

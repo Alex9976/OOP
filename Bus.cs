@@ -13,7 +13,7 @@ namespace OOPLab1
 
         private void SetupInfoPanel()
         {
-            Console.WriteLine("Setup autopilot? (y/n)");
+            Console.WriteLine("Setup info panel? (y/n)");
             if (Console.ReadLine() == "y")
                 InstallInfoPanel();
             else
@@ -32,12 +32,13 @@ namespace OOPLab1
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type " +
+            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type" +
                               ((isHaveInfoPanel) ? "with info panel.\n" : ".\n"));
         }
 
         public override void AskInfo()
         {
+            Console.WriteLine("Bus\n");
             base.AskInfo();
             SetupInfoPanel();
         }

@@ -27,12 +27,12 @@ namespace OOPLab1
         private void ChooseAltitude()
         {
             Console.WriteLine("Max altitude, meters:");
-            maxAltitude = Convert.ToInt32(Console.ReadLine());
+            maxAltitude = Convert.ToSingle(Console.ReadLine());
         }
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"You choose a air transport '{Manufacturer}' with maximum altitude {maxAltitude} meters \n");
+            Console.WriteLine($"You choose a air transport '{Manufacturer}' with maximum altitude {maxAltitude} meters.\n");
         }
 
         public override void AskInfo()

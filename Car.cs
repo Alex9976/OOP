@@ -31,12 +31,13 @@ namespace OOPLab1
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type " +
-                              ((isHaveAutopilot) ? "with autopilot.\n" : ".\n"));
+            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type" +
+                              ((isHaveAutopilot) ? " with autopilot.\n" : ".\n"));
         }
 
         public override void AskInfo()
         {
+            Console.WriteLine("Car transport\n");
             base.AskInfo();
             SetupAutopilot();
         }

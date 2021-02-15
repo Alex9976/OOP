@@ -34,11 +34,12 @@ namespace OOPLab1
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"You choose a air transport '{Manufacturer}' wih {Engine} engine, with maximum altitude {MaxAltitude} meters \n");
+            Console.WriteLine($"You choose a air transport '{Manufacturer}' wih {Engine} engine, with maximum altitude {MaxAltitude} meters.\n");
         }
 
         public override void AskInfo()
         {
+            Console.WriteLine("Airplane\n");
             base.AskInfo();
             ChooseEngine();
         }
