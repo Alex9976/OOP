@@ -32,7 +32,7 @@ namespace OOPLab1
 
         public override void PrintInfo()
         {
-            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type" +
+            Console.WriteLine($"You choose a bus '{Manufacturer}' with {EngineType} engine type" +
                               ((isHaveInfoPanel) ? "with info panel.\n" : ".\n"));
         }
 
