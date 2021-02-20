@@ -12,7 +12,6 @@ namespace OOPLab1
             {
                 transport[i].AskInfo();
                 transport[i].PrintInfo();
-                Console.WriteLine("\n");
             }
 
         }

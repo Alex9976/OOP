@@ -8,7 +8,7 @@ namespace OOPLab1
     {
         public Sea(string Manufacturer) : base(Manufacturer) { }
 
-        private float maxSpeed { get; set; }
+        private float maxSpeed;
         protected float MaxSpeed
         {
             get

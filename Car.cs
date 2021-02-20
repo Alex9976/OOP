@@ -14,19 +14,9 @@ namespace OOPLab1
         {
             Console.WriteLine("Setup autopilot? (y/n)");
             if (Console.ReadLine() == "y")
-                InstallAutopilot();
+                isHaveAutopilot = true;
             else
-                UninstallAutopilot();
-        }
-
-        private void InstallAutopilot()
-        {
-            isHaveAutopilot = true;
-        }
-
-        private void UninstallAutopilot()
-        {
-            isHaveAutopilot = false;
+                isHaveAutopilot = false;
         }
 
         public override void PrintInfo()

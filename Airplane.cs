@@ -10,7 +10,7 @@ namespace OOPLab1
     {
         public Airplane(string Manufacturer) : base(Manufacturer) { }
 
-        public TEngine Engine { get; set; }
+        private TEngine Engine { get; set; }
 
         private void ChooseEngine()
         {

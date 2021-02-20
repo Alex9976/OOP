@@ -15,19 +15,9 @@ namespace OOPLab1
         {
             Console.WriteLine("Setup info panel? (y/n)");
             if (Console.ReadLine() == "y")
-                InstallInfoPanel();
+                isHaveInfoPanel = true;
             else
-                UninstallInfoPanel();
-        }
-
-        private void InstallInfoPanel()
-        {
-            isHaveInfoPanel = true;
-        }
-
-        private void UninstallInfoPanel()
-        {
-            isHaveInfoPanel = false;
+                isHaveInfoPanel = false;
         }
 
         public override void PrintInfo()

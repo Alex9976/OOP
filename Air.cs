@@ -9,7 +9,7 @@ namespace OOPLab1
     {
         public Air(string Manufacturer) : base(Manufacturer) {}
 
-        private float maxAltitude { get; set; }
+        private float maxAltitude;
         protected float MaxAltitude
         {
             get

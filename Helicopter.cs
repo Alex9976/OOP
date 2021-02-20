@@ -14,19 +14,9 @@ namespace OOPLab1
         {
             Console.WriteLine("Is have parachute? (y/n)");
             if (Console.ReadLine() == "y")
-                HaveParachute();
+                isHaveParachute = true;
             else
-                HaveNotParachute();
-        }
-
-        private void HaveParachute()
-        {
-            isHaveParachute = true;
-        }
-
-        private void HaveNotParachute()
-        {
-            isHaveParachute = false;
+                isHaveParachute = false;
         }
 
         public override void PrintInfo()
