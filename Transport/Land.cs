@@ -6,7 +6,7 @@ namespace OOPLab1
 {
     enum TEngType { petrol = 1, diesel, gas, electricity } 
 
-    class Land : Transport
+    abstract class Land : Transport
     {
         public TEngType EngineType { get; set; }
 

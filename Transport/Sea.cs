@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OOPLab1
 {
-    class Sea : Transport
+    abstract class Sea : Transport
     {
         public Sea(string Manufacturer) : base(Manufacturer) { }
 
@@ -23,20 +23,21 @@ namespace OOPLab1
             }
         }
 
-        private void ChooseAltitude()
+        private void ChooseSpeed()
         {
             Console.WriteLine("Max speed, knots:");
             maxSpeed = Convert.ToInt32(Console.ReadLine());
         }
 
+
         public override void PrintInfo()
         {
-            Console.WriteLine($"You choose a sea transport '{Manufacturer}' with maximum altitude {maxSpeed} knots \n");
+            Console.WriteLine($"You choose a sea transport '{Manufacturer}' with maximum speed {maxSpeed} knots \n");
         }
 
         public override void AskInfo()
         {
-            ChooseAltitude();
+            ChooseSpeed();
         }
 
     }

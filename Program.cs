@@ -7,7 +7,7 @@ namespace OOPLab1
         static void Main(string[] args)
         {
 
-            Transport[] transport = new Transport[] { new Car("Audi"), new Bus("MAN"), new Airplane("Airbus"), new Helicopter("Robinson"), new Sea("Tornado") };
+            Transport[] transport = new Transport[] { new Car("Audi"), new Bus("MAN"), new Airplane("Airbus"), new Helicopter("Robinson"), new Boat("Tornado") };
             for (int i = 0; i < transport.Length; i++)
             {
                 transport[i].AskInfo();
