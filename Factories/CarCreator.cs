@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OOPLab1.Factories
+namespace OOPLab1
 {
-    class CreateCar
+    class CarCreator : TransportFactory<Car>
     {
+        public override Car Create(Object[] args)
+        {
+            return new Car((string)args[0]);
+        }
     }
 }

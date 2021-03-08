@@ -4,7 +4,10 @@ using System.Text;
 
 namespace OOPLab1
 {
-    class TransportFactory
+    abstract class TransportFactory<T>
     {
+
+        public abstract T Create(Object[] args);
+
     }
 }
