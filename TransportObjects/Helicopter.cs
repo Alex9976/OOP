@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OOPLab1
+namespace OOP
 {
-    class Helicopter : Air
+    sealed class Helicopter : Air
     {
         public Helicopter(string Manufacturer) : base(Manufacturer) { }
+
+        public Helicopter(string Manufacturer, int MaxAltitude, bool isHaveParachute) : base(Manufacturer) 
+        {
+            this.MaxAltitude = MaxAltitude;
+            this.isHaveParachute = isHaveParachute;
+        }
 
         private bool isHaveParachute;
 

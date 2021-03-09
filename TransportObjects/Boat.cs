@@ -2,10 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OOPLab1
+namespace OOP
 {
-    class Boat : Sea
+    sealed class Boat : Sea
     {
         public Boat(string Manufacturer) : base(Manufacturer) { }
+
+        public Boat(string Manufacturer, float MaxSpeed) : base(Manufacturer) 
+        {
+            this.MaxSpeed = MaxSpeed;
+        }
     }
 }

@@ -7,13 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="591,29,0,0" VerticalAlignment="Top" Width="180" Height="40">
-            <ComboBoxItem Content="Car"/>
-            <ComboBoxItem Content="Bus"/>
-            <ComboBoxItem Content="Airplane"/>
-            <ComboBoxItem Content="Helicopter"/>
-            <ComboBoxItem Content="Boat"/>
-        </ComboBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <WrapPanel HorizontalAlignment="Left" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="19" SelectedIndex="0">
+                <ComboBoxItem Content="Car"/>
+                <ComboBoxItem Content="Bus"/>
+                <ComboBoxItem Content="Airplane"/>
+                <ComboBoxItem Content="Helicopter"/>
+                <ComboBoxItem Content="Boat"/>
+            </ComboBox>
+            <Button x:Name="button" Content="Батон" Width="75" Click="button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,0"/>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="179"/>
+            <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+        </WrapPanel>
 
     </Grid>
 </Window>

@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OOPLab1
+namespace OOP
 {
-    class Car : Land
+    sealed class Car : Land
     {
         private bool isHaveAutopilot;
 
         public Car(string Manufacturer) : base(Manufacturer) { }
+
+        public Car(string Manufacturer, TEngType EngineType, bool isHaveAutopilot) : base(Manufacturer) 
+        {
+            this.EngineType = EngineType;
+            this.isHaveAutopilot = isHaveAutopilot;
+        }
 
         private void SetupAutopilot()
         {

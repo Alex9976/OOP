@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OOPLab1
+namespace OOP
 {
-    class Bus : Land
+    sealed class Bus : Land
     {
 
         private bool isHaveInfoPanel;
 
         public Bus(string Manufacturer) : base(Manufacturer) { }
+
+        public Bus(string Manufacturer, TEngType EngineType, bool isHaveInfoPanel) : base(Manufacturer)
+        {
+            this.EngineType = EngineType;
+            this.isHaveInfoPanel = isHaveInfoPanel;
+        }
 
         private void SetupInfoPanel()
         {

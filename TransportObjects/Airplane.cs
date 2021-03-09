@@ -2,13 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OOPLab1
+namespace OOP
 {
     enum TEngine { jet = 1, turboprop }
 
-    class Airplane : Air
+    sealed class Airplane : Air
     {
+
         public Airplane(string Manufacturer) : base(Manufacturer) { }
+
+        public Airplane(string Manufacturer, int MaxAltitude, TEngine Engine) : base(Manufacturer) 
+        {
+            this.MaxAltitude = MaxAltitude;
+            this.Engine = Engine;
+        }
 
         private TEngine Engine { get; set; }
 

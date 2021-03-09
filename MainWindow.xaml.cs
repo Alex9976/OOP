@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +24,30 @@ namespace OOP
         public MainWindow()
         {
             InitializeComponent();
+
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+            
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            object[] obj = new object[] { textBox.Text };
+            switch (comboBox.SelectedIndex)
+            {
+                case 0:
+                    AirplaneCreator airplaneCreator = AirplaneCreator.getInstance();
+                    Airplane tr = airplaneCreator.Create(obj);
+                    MessageBox.Show(tr.Manufacturer);
+                    break;
+            }
+                   
+        }
+
+        
     }
 }
