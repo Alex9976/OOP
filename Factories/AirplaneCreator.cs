@@ -4,25 +4,17 @@ using System.Text;
 
 namespace OOP
 {
-    class AirplaneCreator : TransportFactory<Airplane>
+    class AirplaneCreator : TransportFactory
     {
 
-        private AirplaneCreator() { }
-
-        private static AirplaneCreator instance;
-
-        public static AirplaneCreator getInstance()
+        public AirplaneCreator() 
         {
-            if (instance == null)
-            {
-                instance = new AirplaneCreator();
-            }
-            return instance;
+            Name = "Airplane";
         }
 
-        public override Airplane Create(Object[] args)
+        public override ITransport Create(Object[] args)
         {
-            return new Airplane((string) args[0]);
+            return new Airplane((string) args[0], (int)args[1], (TEngine)args[2]);
         }
     }
 } 

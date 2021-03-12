@@ -4,10 +4,13 @@ using System.Text;
 
 namespace OOP
 {
-    abstract class TransportFactory<T>
+
+    abstract class TransportFactory
     {
 
-        public abstract T Create(Object[] args);
+        public static string Name { get; set; }
+
+        public abstract ITransport Create(Object[] args);
 
     }
 }

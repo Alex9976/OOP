@@ -11,18 +11,91 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <WrapPanel HorizontalAlignment="Left" Height="400" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="19" SelectedIndex="0">
-                <ComboBoxItem Content="Car"/>
-                <ComboBoxItem Content="Bus"/>
-                <ComboBoxItem Content="Airplane"/>
-                <ComboBoxItem Content="Helicopter"/>
-                <ComboBoxItem Content="Boat"/>
-            </ComboBox>
-            <Button x:Name="button" Content="Батон" Width="75" Click="button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,0"/>
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Text="TextBox" Width="179"/>
-            <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
+        <WrapPanel x:Name="MainWPanel" HorizontalAlignment="Left" Height="118" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0"/>
+            <Button x:Name="button" Content="Батон" Width="75" Click="button_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,20"/>
+            <Label x:Name="label" Content="Manufacturer:" Width="181" Height="23"/>
+            <TextBox x:Name="textBoxManufacturer" Height="23" TextWrapping="Wrap" Width="179"/>
         </WrapPanel>
+        <WrapPanel x:Name="BusWPanel" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="179" RenderTransformOrigin="0.5,0.5" Margin="9,136,0,0" Visibility="Hidden">
+            <WrapPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.449"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.392"/>
+                </TransformGroup>
+            </WrapPanel.RenderTransform>
+            <Label x:Name="label2" Content="Engine Type:" Width="178"/>
+            <ComboBox x:Name="comboBusEngType" Width="180" SelectedIndex="0">
+                <ComboBoxItem Content="Petrol"/>
+                <ComboBoxItem Content="Disel"/>
+                <ComboBoxItem Content="Gas"/>
+                <ComboBoxItem Content="Electricity"/>
+            </ComboBox>
+            <CheckBox x:Name="checkBusIP" Content="Info Panel" Width="178" Margin="0,5,0,0"/>
+        </WrapPanel>
+        <WrapPanel x:Name="CarWPanel" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="182" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Margin="10,136,0,0" Visibility="Hidden">
+            <WrapPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.449"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.392"/>
+                </TransformGroup>
+            </WrapPanel.RenderTransform>
+            <Label x:Name="label1" Content="Engine Type:" Width="178"/>
+            <ComboBox x:Name="comboCarEngType" Width="180" SelectedIndex="0">
+                <ComboBoxItem Content="Petrol"/>
+                <ComboBoxItem Content="Disel"/>
+                <ComboBoxItem Content="Gas"/>
+                <ComboBoxItem Content="Electricity"/>
+            </ComboBox>
+            <CheckBox x:Name="checkCarAP" Content="Autopilot" Width="178" Margin="0,5,0,0"/>
+        </WrapPanel>
+        <WrapPanel x:Name="AirplaneWPanel" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="182" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Margin="9,137,0,0">
+            <WrapPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.449"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.392"/>
+                </TransformGroup>
+            </WrapPanel.RenderTransform>
+            <Label x:Name="label4" Content="Max Altitude:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Margin="0"/>
+            <TextBox x:Name="AirplaneMaxAlt" TextWrapping="Wrap" Height="23" Width="175"/>
+            <Label x:Name="label3" Content="Engine Type:" Width="178"/>
+            <ComboBox x:Name="comboAirplaneEngType" Width="180" SelectedIndex="0">
+                <ComboBoxItem Content="Jet"/>
+                <ComboBoxItem Content="Turboprop"/>
+            </ComboBox>
+        </WrapPanel>
+        <WrapPanel x:Name="HelicopterWPanel" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="179" RenderTransformOrigin="0.5,0.5" Margin="9,137,0,0" Visibility="Hidden">
+            <WrapPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.449"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.392"/>
+                </TransformGroup>
+            </WrapPanel.RenderTransform>
+            <Label x:Name="label4_Copy" Content="Max Altitude:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Margin="0"/>
+            <TextBox x:Name="HelicopterMaxAlt" TextWrapping="Wrap" Height="23" Width="178"/>
+            <CheckBox x:Name="HelicopterParachute" Content="Parachute" Width="178" Margin="0,5,0,0"/>
+        </WrapPanel>
+        <WrapPanel x:Name="BoatWPanel" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="179" RenderTransformOrigin="0.5,0.5" Orientation="Vertical" Margin="9,136,0,0" Visibility="Hidden">
+            <WrapPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.449"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.392"/>
+                </TransformGroup>
+            </WrapPanel.RenderTransform>
+            <Label x:Name="label5" Content="Max Speed:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Margin="0"/>
+            <TextBox x:Name="BoatMaxSpeed" TextWrapping="Wrap" Height="23" Width="175"/>
+        </WrapPanel>
+        <Button x:Name="button1" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="button1_Click" Margin="57,254,0,0" RenderTransformOrigin="0.491,-0.063"/>
 
     </Grid>
 </Window>

@@ -30,9 +30,9 @@ namespace OOP
         }
 
 
-        public override void PrintInfo()
+        public override string PrintInfo()
         {
-            Console.WriteLine($"You choose a sea transport '{Manufacturer}' with maximum speed {maxSpeed} knots \n");
+            return $"You choose a sea transport '{Manufacturer}' with maximum speed {maxSpeed} knots.";
         }
 
         public override void AskInfo()

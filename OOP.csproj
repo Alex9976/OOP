@@ -60,6 +60,7 @@
     <Compile Include="Factories\BusCreator.cs" />
     <Compile Include="Factories\CarCreator.cs" />
     <Compile Include="Factories\HelicopterCreator.cs" />
+    <Compile Include="ITransport.cs" />
     <Compile Include="Transport.cs" />
     <Compile Include="TransportFactory.cs" />
     <Compile Include="TransportObjects\Airplane.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Transport\Air.cs" />
     <Compile Include="Transport\Land.cs" />
     <Compile Include="Transport\Sea.cs" />
+    <Compile Include="Types.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

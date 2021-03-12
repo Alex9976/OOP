@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OOP
 {
-    enum TEngine { jet = 1, turboprop }
+    
 
     sealed class Airplane : Air
     {
@@ -17,7 +17,7 @@ namespace OOP
             this.Engine = Engine;
         }
 
-        private TEngine Engine { get; set; }
+        public TEngine Engine { get; set; }
 
         private void ChooseEngine()
         {
@@ -39,9 +39,9 @@ namespace OOP
             }
         }
 
-        public override void PrintInfo()
+        public override string PrintInfo()
         {
-            Console.WriteLine($"You choose a air transport '{Manufacturer}' wih {Engine} engine, with maximum altitude {MaxAltitude} meters.\n");
+            return $"You choose a air transport '{Manufacturer}' wih {Engine} engine, with maximum altitude {MaxAltitude} meters.";
         }
 
         public override void AskInfo()

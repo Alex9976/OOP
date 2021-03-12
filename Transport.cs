@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OOP
 {
-    abstract class Transport
+    abstract class Transport : ITransport
     {
         public string Manufacturer { get; set; }
 
@@ -13,7 +13,7 @@ namespace OOP
             this.Manufacturer = Manufacturer;
         }
 
-        public abstract void PrintInfo();
+        public abstract string PrintInfo();
         public abstract void AskInfo();
 
     }

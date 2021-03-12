@@ -4,25 +4,18 @@ using System.Text;
 
 namespace OOP
 {
-    class BusCreator : TransportFactory<Bus>
+    class BusCreator : TransportFactory
     {
 
-        private BusCreator() { }
-
-        private static BusCreator instance;
-
-        public static BusCreator getInstance()
+        public BusCreator() 
         {
-            if (instance == null)
-            {
-                instance = new BusCreator();
-            }
-            return instance;
+            Name = "Bus";
         }
 
-        public override Bus Create(Object[] args)
+
+        public override ITransport Create(Object[] args)
         {
-            return new Bus((string)args[0]);
+            return new Bus((string)args[0], (TEngType)args[1], (bool)args[2]);
         }
     }
 }

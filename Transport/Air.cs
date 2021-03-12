@@ -30,9 +30,9 @@ namespace OOP
             maxAltitude = Convert.ToSingle(Console.ReadLine());
         }
 
-        public override void PrintInfo()
+        public override string PrintInfo()
         {
-            Console.WriteLine($"You choose a air transport '{Manufacturer}' with maximum altitude {maxAltitude} meters.\n");
+            return $"You choose a air transport '{Manufacturer}' with maximum altitude {maxAltitude} meters.";
         }
 
         public override void AskInfo()

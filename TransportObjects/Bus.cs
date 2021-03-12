@@ -26,10 +26,10 @@ namespace OOP
                 isHaveInfoPanel = false;
         }
 
-        public override void PrintInfo()
+        public override string PrintInfo()
         {
-            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type" +
-                              ((isHaveInfoPanel) ? "with info panel.\n" : ".\n"));
+            return $"You choose a car '{Manufacturer}' with {EngineType} engine type" +
+                              ((isHaveInfoPanel) ? "with info panel." : ".");
         }
 
         public override void AskInfo()

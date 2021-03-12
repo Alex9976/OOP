@@ -4,7 +4,6 @@ using System.Text;
 
 namespace OOP
 {
-    enum TEngType { petrol = 1, diesel, gas, electricity } 
 
     abstract class Land : Transport
     {
@@ -36,9 +35,9 @@ namespace OOP
             }
         }
 
-        public override void PrintInfo()
+        public override string PrintInfo()
         {
-            Console.WriteLine($"You choose a land transport '{Manufacturer}' with {EngineType} engine type \n");
+            return $"You choose a land transport '{Manufacturer}' with {EngineType} engine type";
         }
 
         public override void AskInfo()

@@ -25,10 +25,10 @@ namespace OOP
                 isHaveParachute = false;
         }
 
-        public override void PrintInfo()
+        public override string PrintInfo()
         {
-            Console.WriteLine($"You choose a helicopter '{Manufacturer}' with maximum altitude {MaxAltitude} meters" +
-                              ((isHaveParachute) ? " with parachute.\n" : ".\n"));
+            return $"You choose a helicopter '{Manufacturer}' with maximum altitude {MaxAltitude} meters" +
+                              ((isHaveParachute) ? " with parachute." : ".");
         }
 
         public override void AskInfo()

@@ -25,10 +25,10 @@ namespace OOP
                 isHaveAutopilot = false;
         }
 
-        public override void PrintInfo()
+        public override string PrintInfo()
         {
-            Console.WriteLine($"You choose a car '{Manufacturer}' with {EngineType} engine type" +
-                              ((isHaveAutopilot) ? " with autopilot.\n" : ".\n"));
+            return $"You choose a car '{Manufacturer}' with {EngineType} engine type" +
+                              ((isHaveAutopilot) ? " with autopilot." : ".");
         }
 
         public override void AskInfo()
