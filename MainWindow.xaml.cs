@@ -18,7 +18,7 @@ namespace OOP
 {
     public partial class MainWindow : Window
     {
-        Dictionary<string, TransportFactory> list = new Dictionary<string, TransportFactory>();
+        Dictionary<string, TransportFactory> TransportList = new Dictionary<string, TransportFactory>();
 
         public MainWindow()
         {
@@ -33,7 +33,7 @@ namespace OOP
                 if (item.IsSubclassOf(typeof(TransportFactory)))
                 {
                     comboBox.Items.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))));
-                    list.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (TransportFactory)Activator.CreateInstance(item));
+                    TransportList.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (TransportFactory)Activator.CreateInstance(item));
                 }
             }
 
@@ -70,36 +70,36 @@ namespace OOP
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            object[] obj = new object[3];
-            obj[0] = textBoxManufacturer.Text;
+            object[] Parameters = new object[3];
+            Parameters[0] = textBoxManufacturer.Text;
             switch (comboBox.SelectedItem.ToString())
             {
                 case "Car":
-                    obj[1] = comboCarEngType.SelectedIndex + 1;
-                    obj[2] = checkCarAP.IsChecked;
+                    Parameters[1] = comboCarEngType.SelectedIndex + 1;
+                    Parameters[2] = checkCarAP.IsChecked;
                     break;
                 case "Bus":
-                    obj[1] = comboBusEngType.SelectedIndex + 1;
-                    obj[2] = checkBusIP.IsChecked;
+                    Parameters[1] = comboBusEngType.SelectedIndex + 1;
+                    Parameters[2] = checkBusIP.IsChecked;
                     break;
                 case "Airplane":
-                    obj[1] = Convert.ToInt32(AirplaneMaxAlt.Text);
-                    obj[2] = comboAirplaneEngType.SelectedIndex + 1;
+                    Parameters[1] = Convert.ToInt32(AirplaneMaxAlt.Text);
+                    Parameters[2] = comboAirplaneEngType.SelectedIndex + 1;
                     break;
                 case "Helicopter":
-                    obj[1] = Convert.ToInt32(AirplaneMaxAlt.Text);
-                    obj[2] = HelicopterParachute.IsChecked;
+                    Parameters[1] = Convert.ToInt32(AirplaneMaxAlt.Text);
+                    Parameters[2] = HelicopterParachute.IsChecked;
                     break;
                 case "Boat":
-                    obj[1] = Convert.ToDecimal(BoatMaxSpeed.Text);
+                    Parameters[1] = Convert.ToDecimal(BoatMaxSpeed.Text);
                     break;
             }
-            foreach (string Name in list.Keys)
+            foreach (string Name in TransportList.Keys)
             {
                 if (Name == comboBox.SelectedItem.ToString())
                 {
-                    var a = list[Name].Create(obj);
-                    MessageBox.Show(a.PrintInfo());
+                    var transport = TransportList[Name].Create(Parameters);
+                    MessageBox.Show(transport.PrintInfo());
                 }
             }
         }
