@@ -1,18 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
+using System.Text.Json;
 
 namespace OOP
 {
@@ -100,6 +91,12 @@ namespace OOP
                 {
                     var transport = TransportList[Name].Create(Parameters);
                     MessageBox.Show(transport.PrintInfo());
+                    string json = JsonSerializer.Serialize(transport, typeof(Airplane));
+                    using (FileStream file = new FileStream("transport.json", FileMode.OpenOrCreate))
+                    {
+                        //JsonSerializer.Serialize(file, transport);
+                        Console.WriteLine("Data has been saved to file");
+                    }
                 }
             }
         }
