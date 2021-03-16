@@ -8,36 +8,41 @@ namespace OOP
     {
         public Sea(string Manufacturer) : base(Manufacturer) { }
 
-        private float maxSpeed;
-        protected float MaxSpeed
-        {
-            get
-            {
-                return maxSpeed;
-            }
-            set
-            {
-                if (value > 0)
-                    maxSpeed = value;
-                else maxSpeed = 0;
-            }
-        }
+        public TTravelWay TravelWay { get; set; }
 
-        private void ChooseSpeed()
+        public void ChooseTravelWay()
         {
-            Console.WriteLine("Max speed, knots:");
-            maxSpeed = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("1. Automotive, 2. Towed, 3. Alloyed 4. Drifting");
+            switch (Convert.ToInt32(Console.ReadLine()))
+            {
+                case 1:
+                    TravelWay = TTravelWay.automotive;
+                    break;
+                case 2:
+                    TravelWay = TTravelWay.towed;
+                    break;
+                case 3:
+                    TravelWay = TTravelWay.alloyed;
+                    break;
+                case 4:
+                    TravelWay = TTravelWay.drifting;
+                    break;
+                default:
+                    Console.WriteLine("Choosed default value");
+                    TravelWay = TTravelWay.automotive;
+                    break;
+            }
         }
 
 
         public override string PrintInfo()
         {
-            return $"You choose a sea transport '{Manufacturer}' with maximum speed {maxSpeed} knots.";
+            return $"You choose a {TravelWay} sea transport '{Manufacturer}'";
         }
 
         public override void AskInfo()
         {
-            ChooseSpeed();
+            ChooseTravelWay();
         }
 
     }

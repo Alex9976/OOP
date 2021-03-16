@@ -10,6 +10,22 @@ namespace OOP
         public BusCreator() 
         {
             Name = "Bus";
+            ImgPath = "";
+        }
+
+        public override string Question1()
+        {
+            return "Engine Type:";
+        }
+
+        public override string Question2()
+        {
+            return "Info Panel:";
+        }
+
+        public override string[] Answer()
+        {
+            return new string[] { "Petrol", "Diesel", "Gas", "Electricity" };
         }
 
 

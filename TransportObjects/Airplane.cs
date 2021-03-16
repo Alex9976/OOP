@@ -11,10 +11,10 @@ namespace OOP
 
         public Airplane(string Manufacturer) : base(Manufacturer) { }
 
-        public Airplane(string Manufacturer, int MaxAltitude, TEngine Engine) : base(Manufacturer) 
+        public Airplane(string Manufacturer, TEngine Engine, bool IsHaveParachute) : base(Manufacturer) 
         {
-            this.MaxAltitude = MaxAltitude;
             this.Engine = Engine;
+            this.IsHaveParachute = IsHaveParachute;     
         }
 
         public TEngine Engine { get; set; }
@@ -29,8 +29,6 @@ namespace OOP
                     break;
                 case 2:
                     Engine = TEngine.turboprop;
-                    if (MaxAltitude > 10000)
-                        MaxAltitude = 10000;
                     break;
                 default:
                     Console.WriteLine("Choosed default value");
@@ -41,7 +39,7 @@ namespace OOP
 
         public override string PrintInfo()
         {
-            return $"You choose a air transport '{Manufacturer}' wih {Engine} engine, with maximum altitude {MaxAltitude} meters.";
+            return $"You choose a air transport '{Manufacturer}' wih {Engine} engine" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
         public override void AskInfo()
