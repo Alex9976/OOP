@@ -10,6 +10,22 @@ namespace OOP
         public CarCreator()
         {
             Name = "Car";
+            ImgPath = "";
+        }
+
+        public override string Question1()
+        {
+            return "Engine Type:";
+        }
+
+        public override string Question2()
+        {
+            return "Autopilot:";
+        }
+
+        public override string[] Answer()
+        {
+            return new string[] { "Petrol", "Diesel", "Gas", "Electricity" };
         }
 
         public override ITransport Create(Object[] args)

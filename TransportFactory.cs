@@ -8,7 +8,15 @@ namespace OOP
     abstract class TransportFactory
     {
 
-        public static string Name { get; set; }
+        public string Name { get; set; }
+
+        public string ImgPath { get; set; }
+
+        public abstract string Question1();
+
+        public abstract string Question2();
+
+        public abstract string[] Answer();
 
         public abstract ITransport Create(Object[] args);
 

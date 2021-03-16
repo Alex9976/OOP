@@ -9,35 +9,25 @@ namespace OOP
     {
         public Air(string Manufacturer) : base(Manufacturer) {}
 
-        private float maxAltitude;
-        protected float MaxAltitude
-        {
-            get
-            {
-                return maxAltitude;
-            }
-            set
-            {
-                if (value > 0)
-                    maxAltitude = value;
-                else maxAltitude = 0;
-            }
-        }
+        public bool IsHaveParachute { get; set; }
 
-        private void ChooseAltitude()
+        public void Parachute()
         {
-            Console.WriteLine("Max altitude, meters:");
-            maxAltitude = Convert.ToSingle(Console.ReadLine());
+            Console.WriteLine("Is have parachute? (y/n)");
+            if (Console.ReadLine() == "y")
+                IsHaveParachute = true;
+            else
+                IsHaveParachute = false;
         }
 
         public override string PrintInfo()
         {
-            return $"You choose a air transport '{Manufacturer}' with maximum altitude {maxAltitude} meters.";
+            return $"You choose a air transport '{Manufacturer}'" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
         public override void AskInfo()
         {
-            ChooseAltitude();
+            Parachute();
         }
 
     }

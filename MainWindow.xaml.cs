@@ -20,10 +20,11 @@ namespace OOP
     {
         Dictionary<string, TransportFactory> TransportList = new Dictionary<string, TransportFactory>();
 
+        object[] Parameters = new object[3];
+
         public MainWindow()
         {
             InitializeComponent();
-
 
             Assembly assembly = Assembly.Load("OOP");
 
@@ -32,71 +33,50 @@ namespace OOP
             {
                 if (item.IsSubclassOf(typeof(TransportFactory)))
                 {
-                    comboBox.Items.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))));
+                    comboMain.Items.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))));
                     TransportList.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (TransportFactory)Activator.CreateInstance(item));
                 }
             }
 
+            comboLabel.Content = TransportList["Airplane"].Question1();
+            checkBox.Content = TransportList["Airplane"].Question2();
+            string[] elements = TransportList["Airplane"].Answer();
+            for (int i = 0; i < elements.Length; i++)
+            {
+                comboBox.Items.Add(elements[i]);
+            }
+            comboBox.SelectedIndex = 0;
+
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
-            CarWPanel.Visibility = Visibility.Hidden;
-            BusWPanel.Visibility = Visibility.Hidden;
-            AirplaneWPanel.Visibility = Visibility.Hidden;
-            HelicopterWPanel.Visibility = Visibility.Hidden;
-            BoatWPanel.Visibility = Visibility.Hidden;
-            
-            switch (comboBox.SelectedItem.ToString())
+
+            comboLabel.Content = TransportList[comboMain.SelectedItem.ToString()].Question1();
+            checkBox.Content = TransportList[comboMain.SelectedItem.ToString()].Question2();
+
+            string[] elements = TransportList[comboMain.SelectedItem.ToString()].Answer();
+            for (int i = 0; i < comboBox.Items.Count;)
             {
-                case "Car":
-                    CarWPanel.Visibility = Visibility.Visible;
-                    break;
-                case "Bus":
-                    BusWPanel.Visibility = Visibility.Visible;
-                    break;
-                case "Airplane":
-                    AirplaneWPanel.Visibility = Visibility.Visible;
-                    break;
-                case "Helicopter":
-                    HelicopterWPanel.Visibility = Visibility.Visible;
-                    break;
-                case "Boat":
-                    BoatWPanel.Visibility = Visibility.Visible;
-                    break;
+                comboBox.Items.RemoveAt(i);
+            }  
+            for (int i = 0; i < elements.Length; i++)
+            {
+                comboBox.Items.Add(elements[i]);
             }
-            
+            comboBox.SelectedIndex = 0;
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            object[] Parameters = new object[3];
-            Parameters[0] = textBoxManufacturer.Text;
-            switch (comboBox.SelectedItem.ToString())
-            {
-                case "Car":
-                    Parameters[1] = comboCarEngType.SelectedIndex + 1;
-                    Parameters[2] = checkCarAP.IsChecked;
-                    break;
-                case "Bus":
-                    Parameters[1] = comboBusEngType.SelectedIndex + 1;
-                    Parameters[2] = checkBusIP.IsChecked;
-                    break;
-                case "Airplane":
-                    Parameters[1] = Convert.ToInt32(AirplaneMaxAlt.Text);
-                    Parameters[2] = comboAirplaneEngType.SelectedIndex + 1;
-                    break;
-                case "Helicopter":
-                    Parameters[1] = Convert.ToInt32(AirplaneMaxAlt.Text);
-                    Parameters[2] = HelicopterParachute.IsChecked;
-                    break;
-                case "Boat":
-                    Parameters[1] = Convert.ToDecimal(BoatMaxSpeed.Text);
-                    break;
-            }
+            
+            Parameters[0] = textBox.Text;
+            Parameters[1] = comboBox.SelectedIndex + 1;
+            Parameters[2] = checkBox.IsChecked;          
+
             foreach (string Name in TransportList.Keys)
             {
-                if (Name == comboBox.SelectedItem.ToString())
+                if (Name == comboMain.SelectedItem.ToString())
                 {
                     var transport = TransportList[Name].Create(Parameters);
                     MessageBox.Show(transport.PrintInfo());
@@ -104,6 +84,6 @@ namespace OOP
             }
         }
 
-        
+
     }
 }

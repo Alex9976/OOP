@@ -8,34 +8,51 @@ namespace OOP
     {
         public Helicopter(string Manufacturer) : base(Manufacturer) { }
 
-        public Helicopter(string Manufacturer, int MaxAltitude, bool isHaveParachute) : base(Manufacturer) 
+        public Helicopter(string Manufacturer, TPurpose Purpose, bool IsHaveParachute) : base(Manufacturer) 
         {
-            this.MaxAltitude = MaxAltitude;
-            this.isHaveParachute = isHaveParachute;
+            this.Purpose = Purpose;
+            this.IsHaveParachute = IsHaveParachute;
         }
 
-        private bool isHaveParachute;
+        public TPurpose Purpose { get; set; }
 
-        private void Parachute()
+        public void ChoosePurpose()
         {
-            Console.WriteLine("Is have parachute? (y/n)");
-            if (Console.ReadLine() == "y")
-                isHaveParachute = true;
-            else
-                isHaveParachute = false;
+            Console.WriteLine("1. Multipurpose, 2. Passenger, 3. Transport 4. Search 5. Agricultural");
+            switch (Convert.ToInt32(Console.ReadLine()))
+            {
+                case 1:
+                    Purpose = TPurpose.multipurpose;
+                    break;
+                case 2:
+                    Purpose = TPurpose.passenger;
+                    break;
+                case 3:
+                    Purpose = TPurpose.transport;
+                    break;
+                case 4:
+                    Purpose = TPurpose.search;
+                    break;
+                case 5:
+                    Purpose = TPurpose.agricultural;
+                    break;
+                default:
+                    Console.WriteLine("Choosed default value");
+                    Purpose = TPurpose.multipurpose;
+                    break;
+            }
         }
 
         public override string PrintInfo()
         {
-            return $"You choose a helicopter '{Manufacturer}' with maximum altitude {MaxAltitude} meters" +
-                              ((isHaveParachute) ? " with parachute." : ".");
+            return $"You choose a {Purpose} helicopter '{Manufacturer}'" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
         public override void AskInfo()
         {
             Console.WriteLine("Helicopter\n");
             base.AskInfo();
-            Parachute();
+            ChoosePurpose();
         }
 
     }

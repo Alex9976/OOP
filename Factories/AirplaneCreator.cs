@@ -10,11 +10,27 @@ namespace OOP
         public AirplaneCreator() 
         {
             Name = "Airplane";
+            ImgPath = "";
+        }
+
+        public override string Question1()
+        {
+            return "Engine:";
+        }
+
+        public override string Question2()
+        {
+            return "Parachute:";
+        }
+
+        public override string[] Answer()
+        {
+            return new string[] { "Jet", "Turboprop" };
         }
 
         public override ITransport Create(Object[] args)
         {
-            return new Airplane((string) args[0], (int)args[1], (TEngine)args[2]);
+            return new Airplane((string)args[0], (TEngine)args[1], (bool)args[2]);
         }
     }
 } 
