@@ -18,7 +18,7 @@ namespace OOP
 
         public override string PrintInfo()
         {
-            return $"You choose a {TravelWay} sea transport '{Manufacturer}'" + ((IsHaveMotor) ? " with motor." : ".");
+            return $"{TravelWay} sea transport '{Manufacturer}'" + ((IsHaveMotor) ? " with motor." : ".");
         }
 
         public override void AskInfo()

@@ -28,8 +28,7 @@ namespace OOP
 
         public override string PrintInfo()
         {
-            return $"You choose a car '{Manufacturer}' with {EngineType} engine type" +
-                              ((isHaveInfoPanel) ? "with info panel." : ".");
+            return $"bus '{Manufacturer}' with {EngineType} engine type" + ((isHaveInfoPanel) ? "with info panel." : ".");
         }
 
         public override void AskInfo()
