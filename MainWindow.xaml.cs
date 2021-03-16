@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.IO;
 using System.Text.Json;
 
@@ -9,7 +12,9 @@ namespace OOP
 {
     public partial class MainWindow : Window
     {
-        Dictionary<string, TransportFactory> TransportList = new Dictionary<string, TransportFactory>();
+        Dictionary<string, TransportFactory> TransportFactoryList = new Dictionary<string, TransportFactory>();
+        List<ITransport> TransportList = new List<ITransport>();
+        int j = 0;
 
         object[] Parameters = new object[3];
 
@@ -25,13 +30,13 @@ namespace OOP
                 if (item.IsSubclassOf(typeof(TransportFactory)))
                 {
                     comboMain.Items.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))));
-                    TransportList.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (TransportFactory)Activator.CreateInstance(item));
+                    TransportFactoryList.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (TransportFactory)Activator.CreateInstance(item));
                 }
             }
 
-            comboLabel.Content = TransportList["Airplane"].Question1();
-            checkBox.Content = TransportList["Airplane"].Question2();
-            string[] elements = TransportList["Airplane"].Answer();
+            comboLabel.Content = TransportFactoryList["Airplane"].Question1();
+            checkBox.Content = TransportFactoryList["Airplane"].Question2();
+            string[] elements = TransportFactoryList["Airplane"].Answer();
             for (int i = 0; i < elements.Length; i++)
             {
                 comboBox.Items.Add(elements[i]);
@@ -43,10 +48,10 @@ namespace OOP
         private void btnSelect_Click(object sender, RoutedEventArgs e)
         {
 
-            comboLabel.Content = TransportList[comboMain.SelectedItem.ToString()].Question1();
-            checkBox.Content = TransportList[comboMain.SelectedItem.ToString()].Question2();
+            comboLabel.Content = TransportFactoryList[comboMain.SelectedItem.ToString()].Question1();
+            checkBox.Content = TransportFactoryList[comboMain.SelectedItem.ToString()].Question2();
 
-            string[] elements = TransportList[comboMain.SelectedItem.ToString()].Answer();
+            string[] elements = TransportFactoryList[comboMain.SelectedItem.ToString()].Answer();
             for (int i = 0; i < comboBox.Items.Count;)
             {
                 comboBox.Items.RemoveAt(i);
@@ -65,7 +70,7 @@ namespace OOP
             Parameters[1] = comboBox.SelectedIndex + 1;
             Parameters[2] = checkBox.IsChecked;          
 
-            foreach (string Name in TransportList.Keys)
+            foreach (string Name in TransportFactoryList.Keys)
             {
                 if (Name == comboMain.SelectedItem.ToString())
                 {
@@ -77,7 +82,25 @@ namespace OOP
                         //JsonSerializer.Serialize(file, transport);
                         Console.WriteLine("Data has been saved to file");
                     }
+                    TransportList.Add(TransportFactoryList[Name].Create(Parameters));
+
+                    StackPanel stackPanel = new StackPanel { Width = 550, Height = 79};
+                    stackPanel.Orientation = Orientation.Horizontal;
+                    stackPanel.Children.Add(new Image
+                    {
+                        Source = new BitmapImage(new Uri(TransportFactoryList[Name].ImgPath)),
+                        Stretch = Stretch.Fill,
+                        Width = 124,
+                        Height = 74
+                    });
+                    Label label = new Label { Width = 420, Height = 31 };
+                    label.Content = TransportList[TransportList.Count - 1].PrintInfo();
+                    stackPanel.Children.Add(label);
+
+                    listBox.Items.Add(stackPanel);
+
                 }
+                    
             }
         }
 

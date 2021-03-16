@@ -39,7 +39,7 @@ namespace OOP
 
         public override string PrintInfo()
         {
-            return $"You choose a air transport '{Manufacturer}' wih {Engine} engine" + ((IsHaveParachute) ? " with parachute." : ".");
+            return $"airplane '{Manufacturer}' with {Engine} engine" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
         public override void AskInfo()
