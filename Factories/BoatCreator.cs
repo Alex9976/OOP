@@ -10,7 +10,7 @@ namespace OOP
         public BoatCreator() 
         {
             Name = "Boat";
-            ImgPath = "C:\\Users\\alexa\\source\\repos\\OOPLab1\\bin\\Debug\\boat.jpg";
+            ImgPath = "boat.jpg";
         }
 
         public override string Question1()

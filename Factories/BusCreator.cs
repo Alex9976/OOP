@@ -10,7 +10,7 @@ namespace OOP
         public BusCreator() 
         {
             Name = "Bus";
-            ImgPath = "C:\\Users\\alexa\\source\\repos\\OOPLab1\\bin\\Debug\\bus.jpg";
+            ImgPath = "bus.jpg";
         }
 
         public override string Question1()

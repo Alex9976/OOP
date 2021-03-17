@@ -10,7 +10,7 @@ namespace OOP
         public HelicopterCreator() 
         {
             Name = "Helicopter";
-            ImgPath = "C:\\Users\\alexa\\source\\repos\\OOPLab1\\bin\\Debug\\helicopter.jpg";
+            ImgPath = "helicopter.jpg";
         }
 
         public override string Question1()
