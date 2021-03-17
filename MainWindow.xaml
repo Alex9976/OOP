@@ -5,15 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="OOP" Height="458.2" Width="806.4" ResizeMode="CanMinimize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <WrapPanel x:Name="MainWPanel" HorizontalAlignment="Left" Height="288" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
-            <ComboBox x:Name="comboMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0"/>
-            <Button x:Name="btnSelect" Content="Select" Width="75" Click="btnSelect_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,10,0,20"/>
+            <ComboBox x:Name="comboMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectionChanged="comboMain_SelectionChanged" Margin="0,0,0,30"/>
             <Label x:Name="textLabel" Content="Manufacturer:" Width="181" Height="23" Margin="0,0,0,5"/>
             <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Width="179" Margin="0,0,0,10"/>
             <Label x:Name="comboLabel" Content="" Height="28" Width="181" Margin="0,0,0,5"/>
