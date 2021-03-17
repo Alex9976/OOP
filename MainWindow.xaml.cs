@@ -51,14 +51,6 @@ namespace OOP
             {
                 if (Name == comboMain.SelectedItem.ToString())
                 {
-                    var transport = TransportList[Name].Create(Parameters);
-                    MessageBox.Show(transport.PrintInfo());
-                    string json = JsonSerializer.Serialize(transport, typeof(Airplane));
-                    using (FileStream file = new FileStream("transport.json", FileMode.OpenOrCreate))
-                    {
-                        //JsonSerializer.Serialize(file, transport);
-                        Console.WriteLine("Data has been saved to file");
-                    }
                     TransportList.Add(TransportFactoryList[Name].Create(Parameters));
 
                     StackPanel stackPanel = new StackPanel { Width = 550, Height = 79};
