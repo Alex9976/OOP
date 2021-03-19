@@ -5,7 +5,7 @@ using System.Text;
 namespace OOP
 {
 
-    abstract class TransportFactory
+    public abstract class TransportFactory
     {
 
         public string ImgPath { get; set; }

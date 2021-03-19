@@ -1,0 +1,20 @@
+﻿<Window x:Class="OOP.EditForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OOP"
+        mc:Ignorable="d"
+        Title="Edit" Height="247.6" Width="216.8" ResizeMode="CanMinimize">
+    <Grid>
+        <WrapPanel x:Name="MainWPanel" HorizontalAlignment="Left" Height="205" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
+            <Label x:Name="textLabel" Content="Manufacturer:" Width="181" Height="23" Margin="0,0,0,5"/>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Width="179" Margin="0,0,0,10"/>
+            <Label x:Name="comboLabel" Content="" Height="28" Width="181" Margin="0,0,0,5"/>
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0" Margin="0,0,0,10"/>
+            <CheckBox x:Name="checkBox" Content="" Width="178" Height="24"/>
+            <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.491,-0.063" Margin="50,20,0,0" Click="btnSubmit_Click"/>
+        </WrapPanel>
+
+    </Grid>
+</Window>

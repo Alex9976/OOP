@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOP
 {
@@ -32,9 +30,20 @@ namespace OOP
             return $"{TravelWay} sea transport '{Manufacturer}'" + ((IsHaveMotor) ? " with motor." : ".");
         }
 
-        public override void AskInfo()
+        public override void AskInfo(Object[] args)
         {
-            base.AskInfo();
+            Manufacturer = (string)args[0];
+            TravelWay = (TTravelWay)args[1];
+            IsHaveMotor = (bool)args[2];
+        }
+
+        public override Object[] GetInfo()
+        {
+            Object[] obj = new Object[3];
+            obj[0] = Manufacturer;
+            obj[1] = TravelWay;
+            obj[2] = IsHaveMotor;
+            return obj;
         }
     }
 }

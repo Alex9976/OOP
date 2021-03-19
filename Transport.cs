@@ -25,7 +25,10 @@ namespace OOP
         }
 
         public abstract string PrintInfo();
-        public abstract void AskInfo();
+
+        public abstract void AskInfo(Object[] args);
+
+        public abstract Object[] GetInfo();
 
     }
 }

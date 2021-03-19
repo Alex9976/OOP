@@ -86,6 +86,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="EditForm.xaml.cs">
+      <DependentUpon>EditForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Factories\AirplaneCreator.cs" />
     <Compile Include="Factories\BoatCreator.cs" />
     <Compile Include="Factories\BusCreator.cs" />
@@ -102,6 +105,10 @@
     <Compile Include="Transport\Land.cs" />
     <Compile Include="Transport\Sea.cs" />
     <Compile Include="Types.cs" />
+    <Page Include="EditForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

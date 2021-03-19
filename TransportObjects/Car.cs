@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOP
 {
@@ -8,7 +6,7 @@ namespace OOP
     [Serializable]
     public sealed class Car : Land
     {
-        private bool isHaveAutopilot;
+        public bool IsHaveAutopilot { get; set; }
 
         public Car() 
         {
@@ -20,32 +18,32 @@ namespace OOP
             Name = "Car";
         }
 
-        public Car(string Manufacturer, TEngType EngineType, bool isHaveAutopilot) : base(Manufacturer) 
+        public Car(string Manufacturer, TEngType EngineType, bool IsHaveAutopilot) : base(Manufacturer) 
         {
             this.EngineType = EngineType;
-            this.isHaveAutopilot = isHaveAutopilot;
+            this.IsHaveAutopilot = IsHaveAutopilot;
             Name = "Car";
-        }
-
-        private void SetupAutopilot()
-        {
-            Console.WriteLine("Setup autopilot? (y/n)");
-            if (Console.ReadLine() == "y")
-                isHaveAutopilot = true;
-            else
-                isHaveAutopilot = false;
         }
 
         public override string PrintInfo()
         {
-            return $"car '{Manufacturer}' with {EngineType} engine type" + ((isHaveAutopilot) ? " with autopilot." : ".");
+            return $"car '{Manufacturer}' with {EngineType} engine type" + ((IsHaveAutopilot) ? " with autopilot." : ".");
         }
 
-        public override void AskInfo()
+        public override void AskInfo(Object[] args)
         {
-            Console.WriteLine("Car transport\n");
-            base.AskInfo();
-            SetupAutopilot();
+            Manufacturer = (string)args[0];
+            EngineType = (TEngType)args[1];
+            IsHaveAutopilot = (bool)args[2];
+        }
+
+        public override Object[] GetInfo()
+        {
+            Object[] obj = new Object[3];
+            obj[0] = Manufacturer;
+            obj[1] = EngineType;
+            obj[2] = IsHaveAutopilot;
+            return obj;
         }
 
     }

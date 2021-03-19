@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOP
 {
@@ -45,9 +43,11 @@ namespace OOP
             return $"You choose a {TravelWay} sea transport '{Manufacturer}'";
         }
 
-        public override void AskInfo()
+        public override void AskInfo(Object[] args) { }
+
+        public override Object[] GetInfo()
         {
-            ChooseTravelWay();
+            return new Object[1];
         }
 
     }

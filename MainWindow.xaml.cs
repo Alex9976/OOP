@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
@@ -13,8 +14,8 @@ namespace OOP
 {
     public partial class MainWindow : Window
     {
-        Dictionary<string, TransportFactory> TransportFactoryList = new Dictionary<string, TransportFactory>();
-        List<Transport> TransportList = new List<Transport>();
+        public Dictionary<string, TransportFactory> TransportFactoryList = new Dictionary<string, TransportFactory>();
+        public List<Transport> TransportList = new List<Transport>();
         XmlSerializer XMLFormatter = new XmlSerializer(typeof(List<Transport>));
         BinaryFormatter BinFormatter = new BinaryFormatter();
 
@@ -63,7 +64,7 @@ namespace OOP
             }
         }
 
-        private void AddObjectToList(string Img, int Element)
+        public void AddObjectToList(string Img, int Element)
         {
             StackPanel stackPanel = new StackPanel { Width = 550, Height = 79 };
             stackPanel.Orientation = Orientation.Horizontal;
@@ -103,11 +104,10 @@ namespace OOP
         }
 
         
-
         private void btnXMLsave_Click(object sender, RoutedEventArgs e)
         {
 
-            using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
+            using (FileStream file = new FileStream("Transport.xml", FileMode.Create))
             {
                 XMLFormatter.Serialize(file, TransportList);
             }
@@ -131,7 +131,7 @@ namespace OOP
 
         private void btnBinsave_Click(object sender, RoutedEventArgs e)
         {
-            using (FileStream file = new FileStream("Transport.dat", FileMode.OpenOrCreate))
+            using (FileStream file = new FileStream("Transport.dat", FileMode.Create))
             {
                 BinFormatter.Serialize(file, TransportList);
             }
@@ -150,6 +150,33 @@ namespace OOP
                     AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
                 }
             }
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                TransportList.RemoveAt(listBox.SelectedIndex);
+
+                listBox.Items.Clear();
+
+                for (int i = 0; i < TransportList.Count; i++)
+                {
+                    AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
+                }
+
+            }
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                var window = Application.Current.Windows.OfType<MainWindow>().SingleOrDefault(x => x.IsActive);
+                EditForm editForm = new EditForm(window, listBox.SelectedIndex);
+                editForm.Show();
+            }
+            
         }
     }
 }

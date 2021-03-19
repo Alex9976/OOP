@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Xml.Serialization;
 
 namespace OOP
 {
@@ -28,34 +25,25 @@ namespace OOP
 
         public TEngine Engine { get; set; }
 
-        private void ChooseEngine()
-        {
-            Console.WriteLine("1. Jet, 2. Turboprop");
-            switch (Convert.ToInt32(Console.ReadLine()))
-            {
-                case 1:
-                    Engine = TEngine.jet;
-                    break;
-                case 2:
-                    Engine = TEngine.turboprop;
-                    break;
-                default:
-                    Console.WriteLine("Choosed default value");
-                    Engine = TEngine.jet;
-                    break;
-            }
-        }
-
         public override string PrintInfo()
         {
             return $"airplane '{Manufacturer}' with {Engine} engine" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
-        public override void AskInfo()
+        public override void AskInfo(Object[] args)
         {
-            Console.WriteLine("Airplane\n");
-            base.AskInfo();
-            ChooseEngine();
+            Manufacturer = (string)args[0];
+            Engine = (TEngine)args[1];
+            IsHaveParachute = (bool)args[2];
+        }
+
+        public override Object[] GetInfo()
+        {
+            Object[] obj = new Object[3];
+            obj[0] = Manufacturer;
+            obj[1] = Engine;
+            obj[2] = IsHaveParachute;
+            return obj;
         }
 
     }

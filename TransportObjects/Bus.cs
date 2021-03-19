@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOP
 {
@@ -9,7 +7,7 @@ namespace OOP
     public sealed class Bus : Land
     {
 
-        private bool isHaveInfoPanel;
+        public bool IsHaveInfoPanel { get; set; }
 
         public Bus() 
         {
@@ -21,32 +19,32 @@ namespace OOP
             Name = "Bus";
         }
 
-        public Bus(string Manufacturer, TEngType EngineType, bool isHaveInfoPanel) : base(Manufacturer)
+        public Bus(string Manufacturer, TEngType EngineType, bool IsHaveInfoPanel) : base(Manufacturer)
         {
             this.EngineType = EngineType;
-            this.isHaveInfoPanel = isHaveInfoPanel;
+            this.IsHaveInfoPanel = IsHaveInfoPanel;
             Name = "Bus";
-        }
-
-        private void SetupInfoPanel()
-        {
-            Console.WriteLine("Setup info panel? (y/n)");
-            if (Console.ReadLine() == "y")
-                isHaveInfoPanel = true;
-            else
-                isHaveInfoPanel = false;
         }
 
         public override string PrintInfo()
         {
-            return $"bus '{Manufacturer}' with {EngineType} engine type" + ((isHaveInfoPanel) ? "with info panel." : ".");
+            return $"bus '{Manufacturer}' with {EngineType} engine type" + ((IsHaveInfoPanel) ? "with info panel." : ".");
         }
 
-        public override void AskInfo()
+        public override void AskInfo(Object[] args)
         {
-            Console.WriteLine("Bus\n");
-            base.AskInfo();
-            SetupInfoPanel();
+            Manufacturer = (string)args[0];
+            EngineType = (TEngType)args[1];
+            IsHaveInfoPanel = (bool)args[2];
+        }
+
+        public override Object[] GetInfo()
+        {
+            Object[] obj = new Object[3];
+            obj[0] = Manufacturer;
+            obj[1] = EngineType;
+            obj[2] = IsHaveInfoPanel;
+            return obj;
         }
     }
 }

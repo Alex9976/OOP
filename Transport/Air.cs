@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOP
 {
@@ -29,9 +27,11 @@ namespace OOP
             return $"You choose a air transport '{Manufacturer}'" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
-        public override void AskInfo()
+        public override void AskInfo(Object[] args) { }
+
+        public override Object[] GetInfo() 
         {
-            Parachute();
+            return new Object[1];
         }
 
     }

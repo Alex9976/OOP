@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OOP
 {
@@ -28,43 +26,25 @@ namespace OOP
 
         public TPurpose Purpose { get; set; }
 
-        public void ChoosePurpose()
-        {
-            Console.WriteLine("1. Multipurpose, 2. Passenger, 3. Transport 4. Search 5. Agricultural");
-            switch (Convert.ToInt32(Console.ReadLine()))
-            {
-                case 1:
-                    Purpose = TPurpose.multipurpose;
-                    break;
-                case 2:
-                    Purpose = TPurpose.passenger;
-                    break;
-                case 3:
-                    Purpose = TPurpose.transport;
-                    break;
-                case 4:
-                    Purpose = TPurpose.search;
-                    break;
-                case 5:
-                    Purpose = TPurpose.agricultural;
-                    break;
-                default:
-                    Console.WriteLine("Choosed default value");
-                    Purpose = TPurpose.multipurpose;
-                    break;
-            }
-        }
-
         public override string PrintInfo()
         {
             return $"{Purpose} helicopter '{Manufacturer}'" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
-        public override void AskInfo()
+        public override void AskInfo(Object[] args)
         {
-            Console.WriteLine("Helicopter\n");
-            base.AskInfo();
-            ChoosePurpose();
+            Manufacturer = (string)args[0];
+            Purpose = (TPurpose)args[1];
+            IsHaveParachute = (bool)args[2];
+        }
+
+        public override Object[] GetInfo()
+        {
+            Object[] obj = new Object[3];
+            obj[0] = Manufacturer;
+            obj[1] = Purpose;
+            obj[2] = IsHaveParachute;
+            return obj;
         }
 
     }
