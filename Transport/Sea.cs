@@ -4,6 +4,8 @@ using System.Text;
 
 namespace OOP
 {
+
+    [Serializable]
     public abstract class Sea : Transport
     {
 

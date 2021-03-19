@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,7 +15,9 @@ namespace OOP
     {
         Dictionary<string, TransportFactory> TransportFactoryList = new Dictionary<string, TransportFactory>();
         List<Transport> TransportList = new List<Transport>();
-        XmlSerializer formatter = new XmlSerializer(typeof(List<Transport>));
+        XmlSerializer XMLFormatter = new XmlSerializer(typeof(List<Transport>));
+        BinaryFormatter BinFormatter = new BinaryFormatter();
+
         string ProgrammPath = Directory.GetCurrentDirectory();
         bool IsComponentsInitialized = false;
         object[] Parameters = new object[3];
@@ -101,20 +104,20 @@ namespace OOP
 
         
 
-        private void btnJSONsave_Click(object sender, RoutedEventArgs e)
+        private void btnXMLsave_Click(object sender, RoutedEventArgs e)
         {
 
             using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
             {
-                formatter.Serialize(file, TransportList);
+                XMLFormatter.Serialize(file, TransportList);
             }
         }
 
-        private void btnJSONload_Click(object sender, RoutedEventArgs e)
+        private void btnXMLload_Click(object sender, RoutedEventArgs e)
         {
             using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
             {
-                TransportList = (List<Transport>)formatter.Deserialize(file);
+                TransportList = (List<Transport>)XMLFormatter.Deserialize(file);
             }
 
             listBox.Items.Clear();
@@ -124,6 +127,29 @@ namespace OOP
                 AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
             }
 
+        }
+
+        private void btnBinsave_Click(object sender, RoutedEventArgs e)
+        {
+            using (FileStream file = new FileStream("Transport.dat", FileMode.OpenOrCreate))
+            {
+                BinFormatter.Serialize(file, TransportList);
+            }
+        }
+
+        private void btnBinload_Click(object sender, RoutedEventArgs e)
+        {
+            using (FileStream file = new FileStream("Transport.dat", FileMode.OpenOrCreate))
+            {
+                TransportList = (List<Transport>)BinFormatter.Deserialize(file);
+
+                listBox.Items.Clear();
+
+                for (int i = 0; i < TransportList.Count; i++)
+                {
+                    AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
+                }
+            }
         }
     }
 }

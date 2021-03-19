@@ -11,7 +11,7 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <WrapPanel x:Name="MainWPanel" HorizontalAlignment="Left" Height="250" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
+        <WrapPanel x:Name="MainWPanel" HorizontalAlignment="Left" Height="245" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
             <ComboBox x:Name="comboMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectionChanged="comboMain_SelectionChanged" Margin="0,0,0,30"/>
             <Label x:Name="textLabel" Content="Manufacturer:" Width="181" Height="23" Margin="0,0,0,5"/>
             <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Width="179" Margin="0,0,0,10"/>
@@ -21,12 +21,14 @@
             <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="btnSubmit_Click" RenderTransformOrigin="0.491,-0.063" Margin="50,20,0,0"/>
         </WrapPanel>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="400" Margin="195,10,0,0" VerticalAlignment="Top" Width="589"/>
-        <Button x:Name="btnJSONsave" Content="Save" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Width="75" Click="btnJSONsave_Click"/>
-        <Button x:Name="btnJSONload" Content="Load" HorizontalAlignment="Left" Margin="112,390,0,0" VerticalAlignment="Top" Width="75" Click="btnJSONload_Click"/>
+        <Button x:Name="btnXMLsave" Content="Save" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Width="75" Click="btnXMLsave_Click"/>
+        <Button x:Name="btnXMLload" Content="Load" HorizontalAlignment="Left" Margin="112,390,0,0" VerticalAlignment="Top" Width="75" Click="btnXMLload_Click"/>
         <Label x:Name="label" Content="XML:" HorizontalAlignment="Left" Margin="10,359,0,0" VerticalAlignment="Top" Width="61"/>
-        <Button x:Name="btnBinsave" Content="Save" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Width="75" Click="btnJSONsave_Click"/>
-        <Button x:Name="btnBinload" Content="Load" HorizontalAlignment="Left" Margin="112,334,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnBinsave" Content="Save" HorizontalAlignment="Left" Margin="10,334,0,0" VerticalAlignment="Top" Width="75" Click="btnBinsave_Click"/>
+        <Button x:Name="btnBinload" Content="Load" HorizontalAlignment="Left" Margin="112,334,0,0" VerticalAlignment="Top" Width="75" Click="btnBinload_Click"/>
         <Label x:Name="label1" Content="Binary:" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top" Width="61"/>
+        <Button x:Name="btnEdit" Content="Edit" HorizontalAlignment="Left" Margin="10,279,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="112,279,0,0" VerticalAlignment="Top" Width="75"/>
 
     </Grid>
 </Window>

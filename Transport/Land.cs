@@ -4,6 +4,8 @@ using System.Text;
 
 namespace OOP
 {
+
+    [Serializable]
     public abstract class Land : Transport
     {
         public TEngType EngineType { get; set; }
