@@ -4,10 +4,11 @@ using System.Text;
 
 namespace OOP
 {
-
-    abstract class Land : Transport
+    public abstract class Land : Transport
     {
         public TEngType EngineType { get; set; }
+
+        public Land() { }
 
         public Land(string Manufacturer) : base(Manufacturer) { }
 

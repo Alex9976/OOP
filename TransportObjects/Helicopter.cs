@@ -4,14 +4,26 @@ using System.Text;
 
 namespace OOP
 {
-    sealed class Helicopter : Air
+
+    [Serializable]
+    public sealed class Helicopter : Air
     {
-        public Helicopter(string Manufacturer) : base(Manufacturer) { }
+
+        public Helicopter() 
+        {
+            Name = "Helicopter";
+        }
+
+        public Helicopter(string Manufacturer) : base(Manufacturer) 
+        {
+            Name = "Helicopter";
+        }
 
         public Helicopter(string Manufacturer, TPurpose Purpose, bool IsHaveParachute) : base(Manufacturer) 
         {
             this.Purpose = Purpose;
             this.IsHaveParachute = IsHaveParachute;
+            Name = "Helicopter";
         }
 
         public TPurpose Purpose { get; set; }

@@ -4,14 +4,25 @@ using System.Text;
 
 namespace OOP
 {
-    sealed class Boat : Sea
+    [Serializable]
+    public sealed class Boat : Sea
     {
-        public Boat(string Manufacturer) : base(Manufacturer) { }
+        
+        public Boat() 
+        {
+            Name = "Boat";
+        }
+
+        public Boat(string Manufacturer) : base(Manufacturer) 
+        {
+            Name = "Boat";
+        }
 
         public Boat(string Manufacturer, TTravelWay TravelWay, bool IsHaveMotor) : base(Manufacturer) 
         {
             this.TravelWay = TravelWay;
             this.IsHaveMotor = IsHaveMotor;
+            Name = "Boat";
         }
 
         public bool IsHaveMotor { get; set; }

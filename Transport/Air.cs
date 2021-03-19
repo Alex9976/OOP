@@ -4,9 +4,11 @@ using System.Text;
 
 namespace OOP
 {
-
-    abstract class Air : Transport
+    public abstract class Air : Transport
     {
+
+        public Air() { }
+
         public Air(string Manufacturer) : base(Manufacturer) {}
 
         public bool IsHaveParachute { get; set; }

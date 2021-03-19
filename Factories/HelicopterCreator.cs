@@ -9,7 +9,6 @@ namespace OOP
 
         public HelicopterCreator() 
         {
-            Name = "Helicopter";
             ImgPath = "helicopter.jpg";
         }
 
@@ -29,7 +28,7 @@ namespace OOP
         }
 
 
-        public override ITransport Create(Object[] args)
+        public override Transport Create(Object[] args)
         {
             return new Helicopter((string)args[0], (TPurpose)args[1], (bool)args[2]);
         }

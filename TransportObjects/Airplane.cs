@@ -1,20 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace OOP
 {
-    
-
-    sealed class Airplane : Air
+    [Serializable]
+    public sealed class Airplane : Air
     {
 
-        public Airplane(string Manufacturer) : base(Manufacturer) { }
+        public Airplane()
+        {
+            Name = "Airplane";
+        }
 
-        public Airplane(string Manufacturer, TEngine Engine, bool IsHaveParachute) : base(Manufacturer) 
+        public Airplane(string Manufacturer) : base(Manufacturer)
+        {
+            Name = "Airplane";
+        }
+
+        public Airplane(string Manufacturer, TEngine Engine, bool IsHaveParachute) : base(Manufacturer)
         {
             this.Engine = Engine;
-            this.IsHaveParachute = IsHaveParachute;     
+            this.IsHaveParachute = IsHaveParachute;
+            Name = "Airplane";
         }
 
         public TEngine Engine { get; set; }

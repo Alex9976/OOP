@@ -9,7 +9,6 @@ namespace OOP
 
         public BusCreator() 
         {
-            Name = "Bus";
             ImgPath = "bus.jpg";
         }
 
@@ -29,7 +28,7 @@ namespace OOP
         }
 
 
-        public override ITransport Create(Object[] args)
+        public override Transport Create(Object[] args)
         {
             return new Bus((string)args[0], (TEngType)args[1], (bool)args[2]);
         }

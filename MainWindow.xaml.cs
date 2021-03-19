@@ -6,14 +6,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Text.Json;
+using System.Xml.Serialization;
 
 namespace OOP
 {
     public partial class MainWindow : Window
     {
         Dictionary<string, TransportFactory> TransportFactoryList = new Dictionary<string, TransportFactory>();
-        List<ITransport> TransportList = new List<ITransport>();
+        List<Transport> TransportList = new List<Transport>();
+        XmlSerializer formatter = new XmlSerializer(typeof(List<Transport>));
         string ProgrammPath = Directory.GetCurrentDirectory();
         bool IsComponentsInitialized = false;
         object[] Parameters = new object[3];
@@ -52,24 +53,29 @@ namespace OOP
                 {
                     TransportList.Add(TransportFactoryList[Name].Create(Parameters));
 
-                    StackPanel stackPanel = new StackPanel { Width = 550, Height = 79};
-                    stackPanel.Orientation = Orientation.Horizontal;
-                    stackPanel.Children.Add(new Image
-                    {
-                        Source = new BitmapImage(new Uri(ProgrammPath + "\\" + TransportFactoryList[Name].ImgPath)),
-                        Stretch = Stretch.Fill,
-                        Width = 124,
-                        Height = 74
-                    });
-                    Label label = new Label { Width = 420, Height = 31 };
-                    label.Content = TransportList[TransportList.Count - 1].PrintInfo();
-                    stackPanel.Children.Add(label);
-
-                    listBox.Items.Add(stackPanel);
+                    AddObjectToList(TransportFactoryList[Name].ImgPath, TransportList.Count - 1);
 
                 }
                     
             }
+        }
+
+        private void AddObjectToList(string Img, int Element)
+        {
+            StackPanel stackPanel = new StackPanel { Width = 550, Height = 79 };
+            stackPanel.Orientation = Orientation.Horizontal;
+            stackPanel.Children.Add(new Image
+            {
+                Source = new BitmapImage(new Uri(ProgrammPath + "\\" + Img)),
+                Stretch = Stretch.Fill,
+                Width = 124,
+                Height = 74
+            });
+            Label label = new Label { Width = 420, Height = 31 };
+            label.Content = TransportList[Element].PrintInfo();
+            stackPanel.Children.Add(label);
+
+            listBox.Items.Add(stackPanel);
         }
 
         private void comboMain_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -91,6 +97,33 @@ namespace OOP
                 comboBox.SelectedIndex = 0;
             }
             
+        }
+
+        
+
+        private void btnJSONsave_Click(object sender, RoutedEventArgs e)
+        {
+
+            using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(file, TransportList);
+            }
+        }
+
+        private void btnJSONload_Click(object sender, RoutedEventArgs e)
+        {
+            using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
+            {
+                TransportList = (List<Transport>)formatter.Deserialize(file);
+            }
+
+            listBox.Items.Clear();
+            
+            for (int i = 0; i < TransportList.Count; i++)
+            {
+                AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
+            }
+
         }
     }
 }

@@ -4,17 +4,28 @@ using System.Text;
 
 namespace OOP
 {
-    sealed class Bus : Land
+
+    [Serializable]
+    public sealed class Bus : Land
     {
 
         private bool isHaveInfoPanel;
 
-        public Bus(string Manufacturer) : base(Manufacturer) { }
+        public Bus() 
+        {
+            Name = "Bus";
+        }
+
+        public Bus(string Manufacturer) : base(Manufacturer) 
+        {
+            Name = "Bus";
+        }
 
         public Bus(string Manufacturer, TEngType EngineType, bool isHaveInfoPanel) : base(Manufacturer)
         {
             this.EngineType = EngineType;
             this.isHaveInfoPanel = isHaveInfoPanel;
+            Name = "Bus";
         }
 
         private void SetupInfoPanel()

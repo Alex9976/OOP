@@ -1,12 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace OOP
 {
-    abstract class Transport : ITransport
+    [XmlInclude(typeof(Airplane))]
+    [XmlInclude(typeof(Boat))]
+    [XmlInclude(typeof(Bus))]
+    [XmlInclude(typeof(Car))]
+    [XmlInclude(typeof(Helicopter))]
+    [Serializable]
+    public abstract class Transport
     {
         public string Manufacturer { get; set; }
+
+        public string Name { get; set; }
+
+        public Transport() { }
 
         public Transport(string Manufacturer)
         {

@@ -4,16 +4,27 @@ using System.Text;
 
 namespace OOP
 {
-    sealed class Car : Land
+
+    [Serializable]
+    public sealed class Car : Land
     {
         private bool isHaveAutopilot;
 
-        public Car(string Manufacturer) : base(Manufacturer) { }
+        public Car() 
+        {
+            Name = "Car";
+        }
+
+        public Car(string Manufacturer) : base(Manufacturer) 
+        {
+            Name = "Car";
+        }
 
         public Car(string Manufacturer, TEngType EngineType, bool isHaveAutopilot) : base(Manufacturer) 
         {
             this.EngineType = EngineType;
             this.isHaveAutopilot = isHaveAutopilot;
+            Name = "Car";
         }
 
         private void SetupAutopilot()

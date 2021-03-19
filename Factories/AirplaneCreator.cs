@@ -9,7 +9,6 @@ namespace OOP
 
         public AirplaneCreator() 
         {
-            Name = "Airplane";
             ImgPath = "airplane.jpg";
         }
 
@@ -28,7 +27,7 @@ namespace OOP
             return new string[] { "Jet", "Turboprop" };
         }
 
-        public override ITransport Create(Object[] args)
+        public override Transport Create(Object[] args)
         {
             return new Airplane((string)args[0], (TEngine)args[1], (bool)args[2]);
         }

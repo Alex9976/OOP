@@ -9,7 +9,6 @@ namespace OOP
 
         public BoatCreator() 
         {
-            Name = "Boat";
             ImgPath = "boat.jpg";
         }
 
@@ -28,7 +27,7 @@ namespace OOP
             return new string[] { "Automotive", "Towed", "Alloyed", "Drifting" };
         }
 
-        public override ITransport Create(Object[] args)
+        public override Transport Create(Object[] args)
         {
             return new Boat((string)args[0], (TTravelWay)args[1], (bool)args[2]);
         }

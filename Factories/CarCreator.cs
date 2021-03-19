@@ -8,8 +8,7 @@ namespace OOP
     {
 
         public CarCreator()
-        {
-            Name = "Car";
+        {  
             ImgPath = "car.jpg";
         }
 
@@ -28,7 +27,7 @@ namespace OOP
             return new string[] { "Petrol", "Diesel", "Gas", "Electricity" };
         }
 
-        public override ITransport Create(Object[] args)
+        public override Transport Create(Object[] args)
         {
             return new Car((string)args[0], (TEngType)args[1], (bool)args[2]);
         }

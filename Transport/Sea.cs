@@ -4,8 +4,11 @@ using System.Text;
 
 namespace OOP
 {
-    abstract class Sea : Transport
+    public abstract class Sea : Transport
     {
+
+        public Sea() { }
+
         public Sea(string Manufacturer) : base(Manufacturer) { }
 
         public TTravelWay TravelWay { get; set; }
