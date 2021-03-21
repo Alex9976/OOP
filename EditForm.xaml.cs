@@ -53,9 +53,7 @@ namespace OOP
                 window.AddObjectToList(window.TransportFactoryList[window.TransportList[i].Name].ImgPath, i);
             }
 
-            var editForm = Application.Current.Windows.OfType<EditForm>().SingleOrDefault(x => x.IsActive);
-
-            editForm.Close();
+            Close();
         }
     }
 }

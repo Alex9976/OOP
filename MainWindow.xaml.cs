@@ -172,8 +172,7 @@ namespace OOP
         {
             if (listBox.SelectedIndex != -1)
             {
-                var window = Application.Current.Windows.OfType<MainWindow>().SingleOrDefault(x => x.IsActive);
-                EditForm editForm = new EditForm(window, listBox.SelectedIndex);
+                EditForm editForm = new EditForm(this, listBox.SelectedIndex);
                 editForm.Show();
             }
             
