@@ -149,5 +149,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="OOP.Sdk\OOP.Sdk.csproj">
+      <Project>{6dc075ee-6719-4678-b75c-0cf2d13b2628}</Project>
+      <Name>OOP.Sdk</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
+using OOP.Sdk;
 
 namespace OOP
 {
@@ -23,9 +24,13 @@ namespace OOP
         bool IsComponentsInitialized = false;
         object[] Parameters = new object[3];
 
+        List<IPlugin> plugins = null;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            plugins = ReadExtensions();
 
             Assembly assembly = Assembly.Load("OOP");
 
@@ -41,6 +46,26 @@ namespace OOP
             
             IsComponentsInitialized = true;
             comboMain.SelectedIndex = 0;
+        }
+
+        static List<IPlugin> ReadExtensions()
+        {
+            var files = Directory.GetFiles("extensions", "*.dll");
+            List<IPlugin> pluginList = new List<IPlugin>();
+
+            foreach (var file in files)
+            {
+                Assembly assembly = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory(), file));
+
+                var pluginTypes = assembly.GetTypes().Where(x => typeof(IPlugin).IsAssignableFrom(x) && x.IsInterface).ToArray();
+
+                foreach (var pluginType in pluginTypes)
+                {
+                    var pluginInstance = Activator.CreateInstance(pluginType);
+                    pluginList.Add((IPlugin)pluginInstance);
+                }
+            }
+            return pluginList;
         }
 
 
