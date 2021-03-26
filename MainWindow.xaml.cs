@@ -145,13 +145,13 @@ namespace OOP
         
         private void btnXMLsave_Click(object sender, RoutedEventArgs e)
         {
-
             using (FileStream file = new FileStream("Transport.xml", FileMode.Create))
             {
                 List<Transport> transports = new List<Transport>();
                 for (int i = 0; i < TransportList.Count; i++)
                 {
-                    transports.Add((Transport)TransportList[i]);
+                    if (typeof(Transport).IsInstanceOfType(TransportList[i]))
+                        transports.Add((Transport)TransportList[i]);
                 }
                 XMLFormatter.Serialize(file, transports);
             }
