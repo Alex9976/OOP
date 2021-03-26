@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,7 +20,7 @@ namespace OOP
         public List<ITransportPlugin> TransportList = new List<ITransportPlugin>();
         XmlSerializer XMLFormatter = new XmlSerializer(typeof(List<Transport>));
         BinaryFormatter BinFormatter = new BinaryFormatter();
-
+       
         string ProgrammPath = Directory.GetCurrentDirectory();
         bool IsComponentsInitialized = false;
         object[] Parameters = new object[3];
@@ -29,6 +30,9 @@ namespace OOP
         public MainWindow()
         {
             InitializeComponent();
+
+            BinFormatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
+            BinFormatter.Binder  = new CustomSerializationBinder();
 
             creators = ReadExtensions();
 
