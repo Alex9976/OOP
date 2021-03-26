@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OOP.Sdk;
 
 namespace OOP
 {
@@ -27,7 +28,7 @@ namespace OOP
             return new string[] { "Jet", "Turboprop" };
         }
 
-        public override Transport Create(Object[] args)
+        public override ITransportPlugin Create(Object[] args)
         {
             return new Airplane((string)args[0], (TEngine)args[1], (bool)args[2]);
         }

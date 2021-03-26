@@ -15,8 +15,8 @@ namespace OOP
 {
     public partial class MainWindow : Window
     {
-        public Dictionary<string, TransportFactory> TransportFactoryList = new Dictionary<string, TransportFactory>();
-        public List<Transport> TransportList = new List<Transport>();
+        public Dictionary<string, ITransportFactoryPlugin> TransportFactoryList = new Dictionary<string, ITransportFactoryPlugin>();
+        public List<ITransportPlugin> TransportList = new List<ITransportPlugin>();
         XmlSerializer XMLFormatter = new XmlSerializer(typeof(List<Transport>));
         BinaryFormatter BinFormatter = new BinaryFormatter();
 
@@ -24,13 +24,13 @@ namespace OOP
         bool IsComponentsInitialized = false;
         object[] Parameters = new object[3];
 
-        List<IPlugin> plugins = null;
+        Dictionary<string, ITransportFactoryPlugin> creators = null;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            plugins = ReadExtensions();
+            creators = ReadExtensions();
 
             Assembly assembly = Assembly.Load("OOP");
 
@@ -40,32 +40,44 @@ namespace OOP
                 if (item.IsSubclassOf(typeof(TransportFactory)))
                 {
                     comboMain.Items.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))));
-                    TransportFactoryList.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (TransportFactory)Activator.CreateInstance(item));
+                    TransportFactoryList.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (ITransportFactoryPlugin)Activator.CreateInstance(item));
                 }
+            }
+
+            foreach (var creator in creators)
+            {
+                comboMain.Items.Add(creator.Key);
+                TransportFactoryList.Add(creator.Key, creator.Value);
             }
             
             IsComponentsInitialized = true;
             comboMain.SelectedIndex = 0;
         }
 
-        static List<IPlugin> ReadExtensions()
+        static Dictionary<string, ITransportFactoryPlugin> ReadExtensions()
         {
-            var files = Directory.GetFiles("extensions", "*.dll");
-            List<IPlugin> pluginList = new List<IPlugin>();
+            var files = Directory.GetFiles("Extensions", "*.dll");
+            Dictionary<string, ITransportFactoryPlugin> creatorList = new Dictionary<string, ITransportFactoryPlugin>();
 
             foreach (var file in files)
             {
                 Assembly assembly = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory(), file));
 
-                var pluginTypes = assembly.GetTypes().Where(x => typeof(IPlugin).IsAssignableFrom(x) && x.IsInterface).ToArray();
+                Type[] pluginTypes;
+                
+                pluginTypes = assembly.GetTypes();
+                
 
                 foreach (var pluginType in pluginTypes)
                 {
-                    var pluginInstance = Activator.CreateInstance(pluginType);
-                    pluginList.Add((IPlugin)pluginInstance);
+                    if (pluginType.GetInterface("OOP.Sdk.ITransportFactoryPlugin") != null)
+                    {
+                        var creatorInstance = Activator.CreateInstance(pluginType);
+                        creatorList.Add((pluginType.Name).Substring(0, Math.Abs((pluginType.Name).IndexOf("Creator"))), (ITransportFactoryPlugin)creatorInstance);
+                    }
                 }
             }
-            return pluginList;
+            return creatorList;
         }
 
 
@@ -142,7 +154,7 @@ namespace OOP
         {
             using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
             {
-                TransportList = (List<Transport>)XMLFormatter.Deserialize(file);
+                TransportList = (List<ITransportPlugin>)XMLFormatter.Deserialize(file);
             }
 
             listBox.Items.Clear();
@@ -166,7 +178,7 @@ namespace OOP
         {
             using (FileStream file = new FileStream("Transport.dat", FileMode.OpenOrCreate))
             {
-                TransportList = (List<Transport>)BinFormatter.Deserialize(file);
+                TransportList = (List<ITransportPlugin>)BinFormatter.Deserialize(file);
 
                 listBox.Items.Clear();
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OOP.Sdk;
 
 namespace OOP
 {
@@ -27,7 +28,7 @@ namespace OOP
             return new string[] { "Automotive", "Towed", "Alloyed", "Drifting" };
         }
 
-        public override Transport Create(Object[] args)
+        public override ITransportPlugin Create(Object[] args)
         {
             return new Boat((string)args[0], (TTravelWay)args[1], (bool)args[2]);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOP.Sdk;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Serialization;
@@ -11,7 +12,7 @@ namespace OOP
     [XmlInclude(typeof(Car))]
     [XmlInclude(typeof(Helicopter))]
     [Serializable]
-    public abstract class Transport
+    public abstract class Transport : ITransportPlugin
     {
         public string Manufacturer { get; set; }
 

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OOP.Sdk;
 
 namespace OOP
 {
 
-    public abstract class TransportFactory
+    public abstract class TransportFactory : ITransportFactoryPlugin
     {
 
         public string ImgPath { get; set; }
@@ -16,7 +17,7 @@ namespace OOP
 
         public abstract string[] Answer();
 
-        public abstract Transport Create(Object[] args);
+        public abstract ITransportPlugin Create(Object[] args);
 
     }
 }

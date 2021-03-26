@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP", "OOP.csproj", "{1412A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP.Sdk", "OOP.Sdk\OOP.Sdk.csproj", "{6DC075EE-6719-4678-B75C-0CF2D13B2628}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Submarine", "Submarine\Submarine.csproj", "{69195102-B36B-4991-8D18-691C93BDF15E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6DC075EE-6719-4678-B75C-0CF2D13B2628}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC075EE-6719-4678-B75C-0CF2D13B2628}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DC075EE-6719-4678-B75C-0CF2D13B2628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69195102-B36B-4991-8D18-691C93BDF15E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69195102-B36B-4991-8D18-691C93BDF15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69195102-B36B-4991-8D18-691C93BDF15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69195102-B36B-4991-8D18-691C93BDF15E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

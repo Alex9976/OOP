@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OOP.Sdk;
 
 namespace OOP
 {
@@ -28,7 +29,7 @@ namespace OOP
         }
 
 
-        public override Transport Create(Object[] args)
+        public override ITransportPlugin Create(Object[] args)
         {
             return new Bus((string)args[0], (TEngType)args[1], (bool)args[2]);
         }
