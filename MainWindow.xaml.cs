@@ -64,9 +64,7 @@ namespace OOP
                 Assembly assembly = Assembly.LoadFile(Path.Combine(Directory.GetCurrentDirectory(), file));
 
                 Type[] pluginTypes;
-                
                 pluginTypes = assembly.GetTypes();
-                
 
                 foreach (var pluginType in pluginTypes)
                 {
@@ -146,7 +144,12 @@ namespace OOP
 
             using (FileStream file = new FileStream("Transport.xml", FileMode.Create))
             {
-                XMLFormatter.Serialize(file, TransportList);
+                List<Transport> transports = new List<Transport>();
+                for (int i = 0; i < TransportList.Count; i++)
+                {
+                    transports.Add((Transport)TransportList[i]);
+                }
+                XMLFormatter.Serialize(file, transports);
             }
         }
 
@@ -154,7 +157,12 @@ namespace OOP
         {
             using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
             {
-                TransportList = (List<ITransportPlugin>)XMLFormatter.Deserialize(file);
+                TransportList.Clear();
+                List<Transport> transports = (List<Transport>)XMLFormatter.Deserialize(file);
+                for (int i = 0; i < transports.Count; i++)
+                {
+                    TransportList.Add(transports[i]);
+                }
             }
 
             listBox.Items.Clear();
