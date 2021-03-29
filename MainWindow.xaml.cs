@@ -107,13 +107,21 @@ namespace OOP
         {
             StackPanel stackPanel = new StackPanel { Width = 550, Height = 79 };
             stackPanel.Orientation = Orientation.Horizontal;
-            stackPanel.Children.Add(new Image
+            try
             {
-                Source = new BitmapImage(new Uri(ProgrammPath + "\\" + Img)),
-                Stretch = Stretch.Fill,
-                Width = 124,
-                Height = 74
-            });
+                stackPanel.Children.Add(new Image
+                {
+                    Source = new BitmapImage(new Uri(ProgrammPath + "\\" + Img)),
+                    Stretch = Stretch.Fill,
+                    Width = 124,
+                    Height = 74
+                });
+            }
+            catch
+            {
+                MessageBox.Show("Loading image error");
+            }            
+            
             Label label = new Label { Width = 420, Height = 31 };
             label.Content = TransportList[Element].PrintInfo();
             stackPanel.Children.Add(label);
