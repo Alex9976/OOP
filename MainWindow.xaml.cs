@@ -18,8 +18,9 @@ namespace OOP
     {
         public Dictionary<string, ITransportFactoryPlugin> TransportFactoryList = new Dictionary<string, ITransportFactoryPlugin>();
         public List<ITransportPlugin> TransportList = new List<ITransportPlugin>();
-        XmlSerializer XMLFormatter = new XmlSerializer(typeof(List<Transport>));
+        XmlSerializer XMLFormatter;
         BinaryFormatter BinFormatter = new BinaryFormatter();
+        List<Type> objectTypesList = new List<Type>();
        
         string ProgrammPath = Directory.GetCurrentDirectory();
         bool IsComponentsInitialized = false;
@@ -34,7 +35,7 @@ namespace OOP
             BinFormatter.AssemblyFormat = System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple;
             BinFormatter.Binder  = new CustomSerializationBinder();
 
-            creators = ReadExtensions();
+            creators = ReadExtensions(objectTypesList);
 
             Assembly assembly = Assembly.Load("OOP");
 
@@ -46,6 +47,10 @@ namespace OOP
                     comboMain.Items.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))));
                     TransportFactoryList.Add((item.Name).Substring(0, Math.Abs((item.Name).IndexOf("Creator"))), (ITransportFactoryPlugin)Activator.CreateInstance(item));
                 }
+                if (item.IsSubclassOf(typeof(Transport)))
+                {
+                    objectTypesList.Add(item);
+                }
             }
 
             foreach (var creator in creators)
@@ -53,12 +58,21 @@ namespace OOP
                 comboMain.Items.Add(creator.Key);
                 TransportFactoryList.Add(creator.Key, creator.Value);
             }
-            
+
+            Type[] objectTypes = new Type[objectTypesList.Count];
+            for (int i = 0; i < objectTypes.Length; i++)
+            {
+                objectTypes[i] = objectTypesList[i];
+            }
+            XMLFormatter = new XmlSerializer(typeof(List<object>), objectTypes);
+
             IsComponentsInitialized = true;
             comboMain.SelectedIndex = 0;
+
+
         }
 
-        static Dictionary<string, ITransportFactoryPlugin> ReadExtensions()
+        static Dictionary<string, ITransportFactoryPlugin> ReadExtensions(List<Type> objectTypesList)
         {
             var files = Directory.GetFiles("Extensions", "*.dll");
             Dictionary<string, ITransportFactoryPlugin> creatorList = new Dictionary<string, ITransportFactoryPlugin>();
@@ -76,6 +90,11 @@ namespace OOP
                     {
                         var creatorInstance = Activator.CreateInstance(pluginType);
                         creatorList.Add((pluginType.Name).Substring(0, Math.Abs((pluginType.Name).IndexOf("Creator"))), (ITransportFactoryPlugin)creatorInstance);
+                    }
+                    if (pluginType.GetInterface("OOP.Sdk.ITransportPlugin") != null)
+                    {
+                        var creatorInstance = Activator.CreateInstance(pluginType);
+                        objectTypesList.Add(creatorInstance.GetType());
                     }
                 }
             }
@@ -95,11 +114,8 @@ namespace OOP
                 if (Name == comboMain.SelectedItem.ToString())
                 {
                     TransportList.Add(TransportFactoryList[Name].Create(Parameters));
-
                     AddObjectToList(TransportFactoryList[Name].ImgPath, TransportList.Count - 1);
-
-                }
-                    
+                }   
             }
         }
 
@@ -111,7 +127,7 @@ namespace OOP
             {
                 stackPanel.Children.Add(new Image
                 {
-                    Source = new BitmapImage(new Uri(ProgrammPath + "\\" + Img)),
+                    Source = new BitmapImage(new Uri(Path.Combine(Directory.GetCurrentDirectory(), "Images/", Img))),
                     Stretch = Stretch.Fill,
                     Width = 124,
                     Height = 74
@@ -149,17 +165,15 @@ namespace OOP
             }
             
         }
-
-        
+    
         private void btnXMLsave_Click(object sender, RoutedEventArgs e)
         {
             using (FileStream file = new FileStream("Transport.xml", FileMode.Create))
             {
-                List<Transport> transports = new List<Transport>();
+                List<object> transports = new List<object>();
                 for (int i = 0; i < TransportList.Count; i++)
                 {
-                    if (typeof(Transport).IsInstanceOfType(TransportList[i]))
-                        transports.Add((Transport)TransportList[i]);
+                    transports.Add(TransportList[i]);
                 }
                 XMLFormatter.Serialize(file, transports);
             }
@@ -170,10 +184,17 @@ namespace OOP
             using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
             {
                 TransportList.Clear();
-                List<Transport> transports = (List<Transport>)XMLFormatter.Deserialize(file);
+                List<object> transports = (List<object>)XMLFormatter.Deserialize(file);
                 for (int i = 0; i < transports.Count; i++)
                 {
-                    TransportList.Add(transports[i]);
+                    try
+                    {
+                        TransportList.Add((ITransportPlugin)transports[i]);
+                    }
+                    catch (InvalidCastException ex)
+                    {
+                        MessageBox.Show(ex.Message.ToString());
+                    }
                 }
             }
 
@@ -181,7 +202,8 @@ namespace OOP
             
             for (int i = 0; i < TransportList.Count; i++)
             {
-                AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
+                    AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
+                
             }
 
         }
@@ -198,13 +220,28 @@ namespace OOP
         {
             using (FileStream file = new FileStream("Transport.dat", FileMode.OpenOrCreate))
             {
-                TransportList = (List<ITransportPlugin>)BinFormatter.Deserialize(file);
+                try
+                {
+                    TransportList = (List<ITransportPlugin>)BinFormatter.Deserialize(file);
+                }
+                catch (SerializationException)
+                {
+                    MessageBox.Show("Serialization error");
+                }
 
                 listBox.Items.Clear();
 
                 for (int i = 0; i < TransportList.Count; i++)
                 {
-                    AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
+                    try
+                    {
+                        AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
+                    }
+                    catch (KeyNotFoundException ex)
+                    {
+                        string errorMessage = ex.Message.ToString();
+                        MessageBox.Show(errorMessage.Substring(0, errorMessage.IndexOf(".")) + ": " + TransportList[i].Name);
+                    }
                 }
             }
         }

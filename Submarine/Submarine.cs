@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace Submarine
 {
-    public enum TTravelWay { automotive = 1, towed, alloyed, drifting }
+    public enum TSubmarineTravelWay { automotive = 1, towed, alloyed, drifting }
 
     [Serializable]
-    class Submarine : ITransportPlugin
+    public class Submarine : ITransportPlugin
     {
         public string Name { get; set; }
 
         public string Manufacturer { get; set; }
 
-        public TTravelWay TravelWay { get; set; }
+        public TSubmarineTravelWay TravelWay { get; set; }
 
         public bool IsAtomic { get; set; }
 
@@ -25,7 +25,7 @@ namespace Submarine
             Name = "Submarine";
         }
 
-        public Submarine(string Manufacturer, TTravelWay TravelWay, bool IsAtomic)
+        public Submarine(string Manufacturer, TSubmarineTravelWay TravelWay, bool IsAtomic)
         {
             this.Manufacturer = Manufacturer;
             this.TravelWay = TravelWay;
@@ -42,7 +42,7 @@ namespace Submarine
         public void AskInfo(Object[] args)
         {
             Manufacturer = (string)args[0];
-            TravelWay = (TTravelWay)args[1];
+            TravelWay = (TSubmarineTravelWay)args[1];
             IsAtomic = (bool)args[2];
         }
 
@@ -82,7 +82,7 @@ namespace Submarine
 
         public ITransportPlugin Create(Object[] args)
         {
-            return new Submarine((string)args[0], (TTravelWay)args[1], (bool)args[2]);
+            return new Submarine((string)args[0], (TSubmarineTravelWay)args[1], (bool)args[2]);
         }
     }
 }

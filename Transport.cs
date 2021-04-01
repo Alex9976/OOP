@@ -6,11 +6,6 @@ using System.Xml.Serialization;
 
 namespace OOP
 {
-    [XmlInclude(typeof(Airplane))]
-    [XmlInclude(typeof(Boat))]
-    [XmlInclude(typeof(Bus))]
-    [XmlInclude(typeof(Car))]
-    [XmlInclude(typeof(Helicopter))]
     [Serializable]
     public abstract class Transport : ITransportPlugin
     {
