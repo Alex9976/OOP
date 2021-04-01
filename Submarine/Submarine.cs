@@ -72,7 +72,7 @@ namespace Submarine
 
         public string Question2()
         {
-            return "Is atomic:";
+            return "Is atomic";
         }
 
         public string[] Answer()

@@ -20,7 +20,7 @@ namespace OOP
 
         public override string Question2()
         {
-            return "Parachute:";
+            return "Parachute";
         }
 
         public override string[] Answer()
