@@ -36,7 +36,7 @@ namespace Submarine
 
         public string PrintInfo()
         {
-            return $"{TravelWay} sea transport '{Manufacturer}'" + ((IsAtomic) ? " with motor." : ".");
+            return $"A" + ((IsAtomic) ? " atomic " : " ") + $"{TravelWay} submarine '{Manufacturer}'.";
         }
 
         public void AskInfo(Object[] args)

@@ -5,22 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP"
         mc:Ignorable="d"
-        Title="OOP" Height="458.2" Width="806.4" ResizeMode="CanMinimize">
-    <Grid>
+        Title="Transport" Height="458.2" Width="806.4" ResizeMode="CanMinimize" Icon="car.png">
+    <Grid Background="#31808080">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
         <WrapPanel x:Name="MainWPanel" HorizontalAlignment="Left" Height="245" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
-            <ComboBox x:Name="comboMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectionChanged="comboMain_SelectionChanged" Margin="0,0,0,30"/>
+            <ComboBox x:Name="comboMain" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectionChanged="comboMain_SelectionChanged" Margin="0,0,0,30" BorderBrush="White">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FFEAEAEA" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFEAEAEA" />
+                </ComboBox.Resources>
+            </ComboBox>
             <Label x:Name="textLabel" Content="Manufacturer:" Width="181" Height="23" Margin="0,0,0,5"/>
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Width="179" Margin="0,0,0,10"/>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Width="179" Margin="0,0,0,10" Background="#7FFFFFFF"/>
             <Label x:Name="comboLabel" Content="" Height="28" Width="181" Margin="0,0,0,5"/>
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0" Margin="0,0,0,10"/>
-            <CheckBox x:Name="checkBox" Content="" Width="178" Height="24"/>
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0" Margin="0,0,0,10">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FFEAEAEA" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFEAEAEA" />
+                </ComboBox.Resources>
+            </ComboBox>
+            <CheckBox x:Name="checkBox" Content="" Width="178" Height="24" Background="#7FFFFFFF"/>
             <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="btnSubmit_Click" RenderTransformOrigin="0.491,-0.063" Margin="50,20,0,0"/>
         </WrapPanel>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="400" Margin="195,10,0,0" VerticalAlignment="Top" Width="589"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="429" Margin="205,0,0,-0.2" VerticalAlignment="Top" Width="587" Background="#CCFFFFFF"/>
         <Button x:Name="btnXMLsave" Content="Save" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" Width="75" Click="btnXMLsave_Click"/>
         <Button x:Name="btnXMLload" Content="Load" HorizontalAlignment="Left" Margin="112,390,0,0" VerticalAlignment="Top" Width="75" Click="btnXMLload_Click"/>
         <Label x:Name="label" Content="XML:" HorizontalAlignment="Left" Margin="10,359,0,0" VerticalAlignment="Top" Width="61"/>

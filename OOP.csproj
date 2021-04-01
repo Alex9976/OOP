@@ -156,5 +156,8 @@
       <Name>OOP.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="car.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

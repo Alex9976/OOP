@@ -5,14 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OOP"
         mc:Ignorable="d"
-        Title="Edit" Height="247.6" Width="216.8" ResizeMode="CanMinimize">
-    <Grid>
+        Title="Edit" Height="247.6" Width="216.8" ResizeMode="CanMinimize" Icon="car.png">
+    <Grid Background="#31808080">
         <WrapPanel x:Name="MainWPanel" HorizontalAlignment="Left" Height="205" Margin="10,10,0,0" VerticalAlignment="Top" Width="180">
             <Label x:Name="textLabel" Content="Manufacturer:" Width="181" Height="23" Margin="0,0,0,5"/>
-            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Width="179" Margin="0,0,0,10"/>
+            <TextBox x:Name="textBox" Height="23" TextWrapping="Wrap" Width="179" Margin="0,0,0,10" Background="#7FFFFFFF"/>
             <Label x:Name="comboLabel" Content="" Height="28" Width="181" Margin="0,0,0,5"/>
-            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0" Margin="0,0,0,10"/>
-            <CheckBox x:Name="checkBox" Content="" Width="178" Height="24"/>
+            <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="180" Height="22" SelectedIndex="0" Margin="0,0,0,10">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#FFEAEAEA" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFEAEAEA" />
+                </ComboBox.Resources>
+            </ComboBox>
+            <CheckBox x:Name="checkBox" Content="" Width="178" Height="24" Background="#7FFFFFFF"/>
             <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.491,-0.063" Margin="50,20,0,0" Click="btnSubmit_Click"/>
         </WrapPanel>
 

@@ -52,6 +52,7 @@ namespace OOP
                     objectTypesList.Add(item);
                 }
             }
+      
 
             foreach (var creator in creators)
             {

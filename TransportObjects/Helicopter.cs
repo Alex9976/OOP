@@ -28,7 +28,7 @@ namespace OOP
 
         public override string PrintInfo()
         {
-            return $"{Purpose} helicopter '{Manufacturer}'" + ((IsHaveParachute) ? " with parachute." : ".");
+            return $"A {Purpose} helicopter '{Manufacturer}'" + ((IsHaveParachute) ? " with parachute." : ".");
         }
 
         public override void AskInfo(Object[] args)

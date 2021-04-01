@@ -27,7 +27,7 @@ namespace OOP
 
         public override string PrintInfo()
         {
-            return $"car '{Manufacturer}' with {EngineType} engine type" + ((IsHaveAutopilot) ? " with autopilot." : ".");
+            return $"A car '{Manufacturer}' with {EngineType} engine type" + ((IsHaveAutopilot) ? " with autopilot." : ".");
         }
 
         public override void AskInfo(Object[] args)
