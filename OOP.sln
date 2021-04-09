@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOP.Sdk", "OOP.Sdk\OOP.Sdk.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Submarine", "Submarine\Submarine.csproj", "{69195102-B36B-4991-8D18-691C93BDF15E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLToJSONTransformer", "XMLToJSONTransformer\XMLToJSONTransformer.csproj", "{FA3C5C00-7FB1-4BED-A382-91FBFA7992CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{69195102-B36B-4991-8D18-691C93BDF15E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69195102-B36B-4991-8D18-691C93BDF15E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69195102-B36B-4991-8D18-691C93BDF15E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA3C5C00-7FB1-4BED-A382-91FBFA7992CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3C5C00-7FB1-4BED-A382-91FBFA7992CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3C5C00-7FB1-4BED-A382-91FBFA7992CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3C5C00-7FB1-4BED-A382-91FBFA7992CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

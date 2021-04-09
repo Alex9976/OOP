@@ -14,6 +14,8 @@ namespace OOP
     {
         public Dictionary<string, ITransportFactoryPlugin> TransportFactoryList = new Dictionary<string, ITransportFactoryPlugin>();
         public List<ITransportPlugin> TransportList = new List<ITransportPlugin>();
+        public Dictionary<string, IFuncPlugin> FuncPluginsList = new Dictionary<string, IFuncPlugin>();
+        public Dictionary<string, bool> FuncPluginsListActivartors = new Dictionary<string, bool>();
         BinarySerializer BinarySerializer = new BinarySerializer();
         XMLSerializer XMLSerializer;
         bool IsComponentsInitialized = false;
@@ -24,6 +26,7 @@ namespace OOP
             InitializeComponent();
 
             Extensions.Initialize(TransportFactoryList, ref XMLSerializer);
+            FunctionalPluginsLoader.LaodPlugins(FuncPluginsList, FuncPluginsListActivartors);
             foreach (var item in TransportFactoryList)
             {
                 comboMain.Items.Add(item.Key);
@@ -97,12 +100,26 @@ namespace OOP
 
         private void btnXMLsave_Click(object sender, RoutedEventArgs e)
         {
-            XMLSerializer.Serialize(TransportList);
+            if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
+            {
+                FuncPluginsList["XMLtoJSON"].Transform(XMLSerializer.getXMLString(TransportList));
+            }
+            else
+            {
+                XMLSerializer.Serialize(TransportList);
+            }
         }
 
         private void btnXMLload_Click(object sender, RoutedEventArgs e)
         {
-            TransportList = XMLSerializer.Deserialize();
+            if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
+            {
+                TransportList = XMLSerializer.Deserialize((string)FuncPluginsList["XMLtoJSON"].ReturnState());
+            }
+            else
+            {
+                TransportList = XMLSerializer.Deserialize();
+            }
 
             listBox.Items.Clear();
             for (int i = 0; i < TransportList.Count; i++)
@@ -157,6 +174,17 @@ namespace OOP
                 EditForm editForm = new EditForm(this, listBox.SelectedIndex);
                 editForm.Show();
             }
+        }
+
+        private void exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void openSettings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow(FuncPluginsList, FuncPluginsListActivartors);
+            settingsWindow.Show();
         }
     }
 }
