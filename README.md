@@ -1,4 +1,5 @@
 # OOP
+[![CodeFactor](https://www.codefactor.io/repository/github/alex9976/oop/badge)](https://www.codefactor.io/repository/github/alex9976/oop)
 ## Lab 1 (Ознакомление с концепциями ООП):
 Построить иерархию классов. Распределить классы по модулям. В главном модуле программы добавить в список различные объекты (статическая инициализация).
 
