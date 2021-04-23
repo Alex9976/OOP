@@ -32,6 +32,21 @@ namespace OOP
                     }
                 }
             }
+
+            Assembly mainAssembly = Assembly.Load("OOP");
+
+            Type[] mainPluginTypes;
+            mainPluginTypes = mainAssembly.GetTypes();
+
+            foreach (var pluginType in mainPluginTypes)
+            {
+                if (pluginType.GetInterface("OOP.Sdk.IFuncPlugin") != null)
+                {
+                    var creatorInstance = Activator.CreateInstance(pluginType);
+                    FuncPluginsList.Add(((IFuncPlugin)creatorInstance).ShortName, (IFuncPlugin)creatorInstance);
+                    FuncPluginsListActivartors.Add(((IFuncPlugin)creatorInstance).ShortName, false);
+                }
+            }
         }
     }
 }

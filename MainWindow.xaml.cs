@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using OOP.Adapters;
 using OOP.Sdk;
 using OOP.Serialization;
 
@@ -99,7 +100,11 @@ namespace OOP
 
         private void btnXMLsave_Click(object sender, RoutedEventArgs e)
         {
-            if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
+            if (FuncPluginsListActivartors.ContainsKey("Archiver") && FuncPluginsListActivartors["Archiver"])
+            {
+                FuncPluginsList["Archiver"].Transform(XMLSerializer.getXMLString(TransportList), "Archive");
+            }
+            else if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
             {
                 FuncPluginsList["XMLtoJSON"].Transform(XMLSerializer.getXMLString(TransportList), "Transport");
             }
@@ -111,7 +116,11 @@ namespace OOP
 
         private void btnXMLload_Click(object sender, RoutedEventArgs e)
         {
-            if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
+            if (FuncPluginsListActivartors.ContainsKey("Archiver") && FuncPluginsListActivartors["Archiver"])
+            {
+                TransportList = XMLSerializer.Deserialize((string)FuncPluginsList["Archiver"].ReturnState("Archive"));
+            }
+            else if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
             {
                 TransportList = XMLSerializer.Deserialize((string)FuncPluginsList["XMLtoJSON"].ReturnState("Transport"));
             }
@@ -129,12 +138,26 @@ namespace OOP
 
         private void btnBinsave_Click(object sender, RoutedEventArgs e)
         {
-            BinarySerializer.Serialize(TransportList);
+            if (FuncPluginsListActivartors.ContainsKey("Archiver") && FuncPluginsListActivartors["Archiver"])
+            {
+                FuncPluginsList["Archiver"].Transform(TransportList, "ArchiveBin");
+            }
+            else
+            {
+                BinarySerializer.Serialize(TransportList);
+            }           
         }
 
         private void btnBinload_Click(object sender, RoutedEventArgs e)
         {
-            TransportList = BinarySerializer.Deserialize();
+            if (FuncPluginsListActivartors.ContainsKey("Archiver") && FuncPluginsListActivartors["Archiver"])
+            {
+                TransportList = (List<ITransportPlugin>)FuncPluginsList["Archiver"].ReturnState("ArchiveBin");
+            }
+            else
+            {
+                TransportList = BinarySerializer.Deserialize();
+            }             
             listBox.Items.Clear();
 
             for (int i = 0; i < TransportList.Count; i++)

@@ -31,6 +31,7 @@ namespace OOP
             foreach (var item in FuncPluginsList)
             {
                 CheckBox checkBox = new CheckBox();
+                checkBox.Margin = new Thickness(0, 0, 0, 10);
                 checkBox.Content = item.Value.Description;
                 checkBox.IsChecked = FuncPluginsListActivartors[item.Key];
                 stackPannel.Children.Add(checkBox);
