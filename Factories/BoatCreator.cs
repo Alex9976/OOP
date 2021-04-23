@@ -7,7 +7,6 @@ namespace OOP
 {
     class BoatCreator : TransportFactory
     {
-
         public BoatCreator() 
         {
             ImgPath = "boat.jpg";

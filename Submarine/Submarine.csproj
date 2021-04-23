@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Submarine.cs" />
+    <Compile Include="SubmarineCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OOP.Sdk\OOP.Sdk.csproj">

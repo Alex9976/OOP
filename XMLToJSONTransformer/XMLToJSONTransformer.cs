@@ -22,22 +22,22 @@ namespace XMLToJSONTransformer
             ShortName = "XMLtoJSON";
         }
 
-        public void Transform(object Source)
+        public void Transform(object Source, string fileName)
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml((string)Source);
             string JsonString = JsonConvert.SerializeXmlNode(doc);
-            using (FileStream file = new FileStream("Transport.json", FileMode.Create))
+            using (FileStream file = new FileStream(fileName + ".json", FileMode.Create))
             {
                 byte[] buffer = System.Text.Encoding.Default.GetBytes(JsonString);
                 file.Write(buffer, 0, buffer.Length);
             }
         }
 
-        public object ReturnState()
+        public object ReturnState(string fileName)
         {
             string JSONString;
-            using (FileStream file = new FileStream("Transport.json", FileMode.OpenOrCreate))
+            using (FileStream file = new FileStream(fileName + ".json", FileMode.OpenOrCreate))
             {
                 byte[] array = new byte[file.Length];
                 file.Read(array, 0, array.Length);

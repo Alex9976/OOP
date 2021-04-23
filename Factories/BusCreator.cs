@@ -7,7 +7,6 @@ namespace OOP
 {
     class BusCreator : TransportFactory
     {
-
         public BusCreator() 
         {
             ImgPath = "bus.jpg";

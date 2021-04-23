@@ -5,7 +5,6 @@ namespace OOP
     [Serializable]
     public sealed class Boat : Sea
     {
-        
         public Boat() 
         {
             Name = "Boat";

@@ -7,7 +7,6 @@ namespace OOP
 {
     class AirplaneCreator : TransportFactory
     {
-
         public AirplaneCreator() 
         {
             ImgPath = "airplane.jpg";

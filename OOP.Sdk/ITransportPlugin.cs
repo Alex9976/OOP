@@ -11,9 +11,7 @@ namespace OOP.Sdk
         string Name { get; set; }
 
         string PrintInfo();
-
         void AskInfo(Object[] args);
-
         Object[] GetInfo();
     }
 }

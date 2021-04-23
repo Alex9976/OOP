@@ -2,11 +2,9 @@
 
 namespace OOP
 {
-
     [Serializable]
     public sealed class Bus : Land
     {
-
         public bool IsHaveInfoPanel { get; set; }
 
         public Bus() 

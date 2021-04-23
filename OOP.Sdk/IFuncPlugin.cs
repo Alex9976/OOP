@@ -11,8 +11,7 @@ namespace OOP.Sdk
         string Description { get; set; }
         string ShortName { get; set; }
 
-        void Transform(object source);
-
-        object ReturnState();
+        void Transform(object source, string fileName);
+        object ReturnState(string fileName);
     }
 }

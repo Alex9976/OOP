@@ -95,14 +95,13 @@ namespace OOP
                 }
                 comboBox.SelectedIndex = 0;
             }
-
         }
 
         private void btnXMLsave_Click(object sender, RoutedEventArgs e)
         {
             if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
             {
-                FuncPluginsList["XMLtoJSON"].Transform(XMLSerializer.getXMLString(TransportList));
+                FuncPluginsList["XMLtoJSON"].Transform(XMLSerializer.getXMLString(TransportList), "Transport");
             }
             else
             {
@@ -114,7 +113,7 @@ namespace OOP
         {
             if (FuncPluginsListActivartors.ContainsKey("XMLtoJSON") && FuncPluginsListActivartors["XMLtoJSON"])
             {
-                TransportList = XMLSerializer.Deserialize((string)FuncPluginsList["XMLtoJSON"].ReturnState());
+                TransportList = XMLSerializer.Deserialize((string)FuncPluginsList["XMLtoJSON"].ReturnState("Transport"));
             }
             else
             {
@@ -126,7 +125,6 @@ namespace OOP
             {
                 AddObjectToList(TransportFactoryList[TransportList[i].Name].ImgPath, i);
             }
-
         }
 
         private void btnBinsave_Click(object sender, RoutedEventArgs e)

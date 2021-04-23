@@ -2,11 +2,9 @@
 
 namespace OOP
 {
-
     [Serializable]
     public sealed class Helicopter : Air
     {
-
         public Helicopter() 
         {
             Name = "Helicopter";
@@ -46,6 +44,5 @@ namespace OOP
             obj[2] = IsHaveParachute;
             return obj;
         }
-
     }
 }

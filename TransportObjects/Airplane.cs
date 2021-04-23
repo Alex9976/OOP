@@ -5,7 +5,6 @@ namespace OOP
     [Serializable]
     public sealed class Airplane : Air
     {
-
         public Airplane()
         {
             Name = "Airplane";
@@ -45,6 +44,5 @@ namespace OOP
             obj[2] = IsHaveParachute;
             return obj;
         }
-
     }
 }

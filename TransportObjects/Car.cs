@@ -2,7 +2,6 @@
 
 namespace OOP
 {
-
     [Serializable]
     public sealed class Car : Land
     {
@@ -45,6 +44,5 @@ namespace OOP
             obj[2] = IsHaveAutopilot;
             return obj;
         }
-
     }
 }

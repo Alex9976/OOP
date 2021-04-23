@@ -2,11 +2,9 @@
 
 namespace OOP
 {
-
     [Serializable]
     public abstract class Air : Transport
     {
-
         public Air() { }
 
         public Air(string Manufacturer) : base(Manufacturer) {}
@@ -24,6 +22,5 @@ namespace OOP
         {
             return new Object[1];
         }
-
     }
 }

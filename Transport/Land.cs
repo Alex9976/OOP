@@ -2,7 +2,6 @@
 
 namespace OOP
 {
-
     [Serializable]
     public abstract class Land : Transport
     {
@@ -23,6 +22,5 @@ namespace OOP
         {
             return new Object[1];
         }
-
     }
 }

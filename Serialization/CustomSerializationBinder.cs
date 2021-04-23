@@ -6,7 +6,6 @@ namespace OOP
 {
     internal sealed class CustomSerializationBinder : SerializationBinder
     {
-
         public override Type BindToType(string assemblyName, string typeName)
         {
             Type typeToDeserialize = null;
@@ -24,7 +23,6 @@ namespace OOP
                         typeToDeserialize = ass.GetType(typeName);
                         break;
                     }
-
                 }
             }
             catch (System.Exception exception)

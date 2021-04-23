@@ -6,7 +6,6 @@ namespace OOP
 {
     public partial class EditForm : Window
     {
-
         Object[] obj;
         MainWindow window;
         int Index;
