@@ -13,6 +13,10 @@ namespace OOP
     {
         public static void LaodPlugins(Dictionary<string, IFuncPlugin> FuncPluginsList, Dictionary<string, bool> FuncPluginsListActivartors)
         {
+            if (!Directory.Exists(@"Functional Plugins"))
+            {
+                Directory.CreateDirectory(@"Functional Plugins");
+            }
             var files = Directory.GetFiles("Functional Plugins", "*.dll");
 
             foreach (var file in files)

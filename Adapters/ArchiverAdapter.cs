@@ -49,8 +49,8 @@ namespace OOP.Adapters
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }                
-            object Result = null;
+            }
+            object Result = new object();
             try
             {
                 using (MemoryStream memoryStream = new MemoryStream(stream))

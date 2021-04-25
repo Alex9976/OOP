@@ -11,6 +11,10 @@ namespace OOP
     {
         private static Dictionary<string, ITransportFactoryPlugin> ReadExtensions(List<Type> objectTypesList)
         {
+            if (!Directory.Exists(@"Extensions"))
+            {
+                Directory.CreateDirectory(@"Extensions");
+            }
             var files = Directory.GetFiles("Extensions", "*.dll");
             Dictionary<string, ITransportFactoryPlugin> creatorList = new Dictionary<string, ITransportFactoryPlugin>();
 
