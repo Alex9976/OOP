@@ -11,7 +11,7 @@ namespace OOP
 {
     public static class FunctionalPluginsLoader
     {
-        public static void LaodPlugins(Dictionary<string, IFuncPlugin> FuncPluginsList, Dictionary<string, bool> FuncPluginsListActivartors)
+        public static void LoadPlugins(Dictionary<string, IFuncPlugin> FuncPluginsList, Dictionary<string, bool> FuncPluginsListActivartors)
         {
             if (!Directory.Exists(@"Functional Plugins"))
             {

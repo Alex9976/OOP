@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using OOP.Adapters;
 using OOP.Sdk;
 using OOP.Serialization;
 
@@ -27,7 +26,7 @@ namespace OOP
             InitializeComponent();
 
             Extensions.Initialize(TransportFactoryList, ref XMLSerializer);
-            FunctionalPluginsLoader.LaodPlugins(FuncPluginsList, FuncPluginsListActivartors);
+            FunctionalPluginsLoader.LoadPlugins(FuncPluginsList, FuncPluginsListActivartors);
             foreach (var item in TransportFactoryList)
             {
                 comboMain.Items.Add(item.Key);
