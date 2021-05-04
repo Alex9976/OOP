@@ -34,19 +34,27 @@ namespace OOP.Serialization
             List<ITransportPlugin> TransportList = new List<ITransportPlugin>();
             using (FileStream file = new FileStream("Transport.xml", FileMode.OpenOrCreate))
             {
-                TransportList.Clear();
-                List<object> transports = (List<object>)XMLFormatter.Deserialize(file);
-                for (int i = 0; i < transports.Count; i++)
+                List<object> transports = new List<object>();
+                try
                 {
-                    try
+                    transports = (List<object>)XMLFormatter.Deserialize(file);
+                    TransportList.Clear();
+                    for (int i = 0; i < transports.Count; i++)
                     {
-                        TransportList.Add((ITransportPlugin)transports[i]);
-                    }
-                    catch (InvalidCastException ex)
-                    {
-                        MessageBox.Show(ex.Message.ToString());
+                        try
+                        {
+                            TransportList.Add((ITransportPlugin)transports[i]);
+                        }
+                        catch (InvalidCastException)
+                        {
+                            MessageBox.Show("Some types are missing. Check for the required plugins", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }               
             }
             return TransportList;
         }
@@ -80,7 +88,7 @@ namespace OOP.Serialization
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     transports = new List<object>();
                 }
                 
@@ -90,9 +98,9 @@ namespace OOP.Serialization
                     {
                         TransportList.Add((ITransportPlugin)transports[i]);
                     }
-                    catch (InvalidCastException ex)
+                    catch (InvalidCastException)
                     {
-                        MessageBox.Show(ex.Message.ToString());
+                        MessageBox.Show("Some types are missing. Check for the required plugins", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
             }
